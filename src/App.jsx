@@ -1,15 +1,12 @@
 import Navbar from './components/Navbar'
+import Hero from './components/Hero'
 import './App.css'
 
 function App() {
   return (
     <>
       <Navbar />
-
-      <main id="home">
-        <h1>Welcome to My Portfolio</h1>
-        <p>My journey starts here.</p>
-      </main>
+      <Hero />
     </>
   )
 }
