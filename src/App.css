@@ -880,3 +880,1194 @@
     padding-right: 16px;
   }
 }
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+
+.about {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 120px 8% 110px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 82% 35%,
+      rgba(124, 58, 237, 0.1),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 15% 85%,
+      rgba(139, 92, 246, 0.05),
+      transparent 30%
+    ),
+    #070709;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+
+/* Large background word */
+
+.aboutBackgroundText {
+  position: absolute;
+  top: 55px;
+  left: 50%;
+  z-index: -1;
+
+  transform: translateX(-50%);
+
+  color: transparent;
+
+  font-size: clamp(130px, 18vw, 280px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 16px;
+
+  -webkit-text-stroke: 1px rgba(167, 139, 250, 0.055);
+
+  user-select: none;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   ABOUT CONTAINER
+========================================================= */
+
+.aboutContainer {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1450px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
+
+  gap: clamp(70px, 8vw, 130px);
+
+  align-items: center;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.aboutContent {
+  max-width: 670px;
+}
+
+.aboutLabel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: fit-content;
+
+  margin-bottom: 24px;
+
+  color: #a78bfa;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 4px;
+}
+
+.aboutLabelLine {
+  display: block;
+
+  width: 45px;
+  height: 1px;
+
+  background: linear-gradient(
+    to right,
+    #8b5cf6,
+    transparent
+  );
+}
+
+
+/* Title */
+
+.aboutTitle {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(44px, 4.4vw, 68px);
+  font-weight: 650;
+
+  line-height: 1.06;
+  letter-spacing: -2.8px;
+}
+
+.aboutTitle span {
+  color: #9b7cf8;
+}
+
+
+/* Description */
+
+.aboutDescription {
+  max-width: 625px;
+
+  margin: 27px 0 0;
+
+  color: rgba(220, 216, 228, 0.64);
+
+  font-size: 15px;
+  font-weight: 400;
+
+  line-height: 1.8;
+}
+
+.aboutDescription + .aboutDescription {
+  margin-top: 14px;
+}
+
+
+/* =========================================================
+   ABOUT BUTTON
+========================================================= */
+
+.aboutButton {
+  width: fit-content;
+  min-height: 50px;
+
+  margin-top: 31px;
+  padding: 0 23px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  border: 1px solid rgba(167, 139, 250, 0.38);
+  border-radius: 8px;
+
+  background: rgba(139, 92, 246, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.aboutButton span:last-child {
+  color: #a78bfa;
+
+  font-size: 19px;
+
+  transition: transform 0.25s ease;
+}
+
+.aboutButton:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(167, 139, 250, 0.72);
+
+  background: rgba(139, 92, 246, 0.1);
+
+  box-shadow:
+    0 12px 35px rgba(124, 58, 237, 0.1);
+}
+
+.aboutButton:hover span:last-child {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.aboutStats {
+  position: relative;
+
+  margin-top: 58px;
+  padding-top: 27px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.aboutStat {
+  position: relative;
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutStat:not(:first-child) {
+  padding-left: 30px;
+}
+
+.aboutStat:not(:first-child)::before {
+  content: '';
+
+  position: absolute;
+  left: 0;
+  top: 5px;
+
+  width: 1px;
+  height: 54px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(167, 139, 250, 0.28),
+    rgba(255, 255, 255, 0.025)
+  );
+}
+
+.aboutStat strong {
+  color: #ffffff;
+
+  font-size: clamp(29px, 2.5vw, 38px);
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: -1px;
+}
+
+.aboutStat span {
+  margin-top: 8px;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.aboutStat small {
+  margin-top: 5px;
+
+  color: rgba(194, 187, 207, 0.4);
+
+  font-size: 9px;
+  font-weight: 400;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   RIGHT CARDS
+========================================================= */
+
+.aboutCards {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+
+/* Decorative vertical line */
+
+.aboutCards::before {
+  content: '';
+
+  position: absolute;
+
+  left: 35px;
+  top: -50px;
+  bottom: -50px;
+
+  z-index: -1;
+
+  width: 1px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(139, 92, 246, 0.18) 18%,
+    rgba(139, 92, 246, 0.18) 82%,
+    transparent
+  );
+}
+
+
+/* Card */
+
+.aboutCard {
+  position: relative;
+
+  width: 100%;
+  min-height: 150px;
+
+  padding: 25px 27px;
+
+  display: grid;
+  grid-template-columns: 72px 1fr;
+
+  gap: 20px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(167, 139, 250, 0.14);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(139, 92, 246, 0.025)
+    ),
+    rgba(12, 11, 17, 0.72);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.18);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.aboutCard::after {
+  content: '';
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 2px;
+  height: 100%;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #8b5cf6,
+    transparent
+  );
+
+  opacity: 0.65;
+}
+
+.aboutCard:hover {
+  transform: translateX(-7px);
+
+  border-color: rgba(167, 139, 250, 0.3);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(139, 92, 246, 0.055)
+    ),
+    rgba(12, 11, 17, 0.82);
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.28),
+    0 0 30px rgba(124, 58, 237, 0.035);
+}
+
+
+/* Card number */
+
+.aboutCardNumber {
+  padding-top: 3px;
+
+  color: rgba(167, 139, 250, 0.35);
+
+  font-size: 28px;
+  font-weight: 300;
+
+  letter-spacing: -1px;
+}
+
+
+/* Card content */
+
+.aboutCardContent {
+  min-width: 0;
+}
+
+.aboutCardTag {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #8b5cf6;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  letter-spacing: 3px;
+}
+
+.aboutCardContent h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  letter-spacing: -0.4px;
+}
+
+.aboutCardContent h4 {
+  margin: 7px 0 0;
+
+  color: rgba(210, 204, 220, 0.65);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 0.3px;
+}
+
+.aboutCardContent p {
+  max-width: 420px;
+
+  margin: 11px 0 0;
+
+  color: rgba(200, 194, 210, 0.48);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   ABOUT TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .about {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .aboutContainer {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(360px, 0.85fr);
+
+    gap: 55px;
+  }
+
+  .aboutTitle {
+    font-size: clamp(42px, 5vw, 58px);
+  }
+
+  .aboutCard {
+    grid-template-columns: 55px 1fr;
+
+    padding: 23px 22px;
+
+    gap: 14px;
+  }
+
+  .aboutCardNumber {
+    font-size: 24px;
+  }
+
+  .aboutStat:not(:first-child) {
+    padding-left: 20px;
+  }
+}
+
+
+/* =========================================================
+   ABOUT MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .about {
+    min-height: auto;
+
+    padding: 95px 20px 85px;
+
+    align-items: flex-start;
+  }
+
+  .aboutBackgroundText {
+    top: 40px;
+
+    font-size: 26vw;
+
+    letter-spacing: 8px;
+  }
+
+  .aboutContainer {
+    display: flex;
+    flex-direction: column;
+
+    gap: 65px;
+  }
+
+  .aboutContent {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .aboutLabel {
+    margin-bottom: 18px;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+  }
+
+  .aboutLabelLine {
+    width: 35px;
+  }
+
+  .aboutTitle {
+    font-size: clamp(38px, 11vw, 52px);
+
+    line-height: 1.06;
+
+    letter-spacing: -2px;
+  }
+
+  .aboutDescription {
+    margin-top: 23px;
+
+    font-size: 14px;
+
+    line-height: 1.72;
+  }
+
+  .aboutDescription + .aboutDescription {
+    margin-top: 13px;
+  }
+
+  .aboutButton {
+    min-height: 48px;
+
+    margin-top: 27px;
+
+    padding: 0 20px;
+  }
+
+
+  /* Mobile Stats */
+
+  .aboutStats {
+    margin-top: 48px;
+
+    padding-top: 24px;
+
+    gap: 14px;
+  }
+
+  .aboutStat:not(:first-child) {
+    padding-left: 14px;
+  }
+
+  .aboutStat strong {
+    font-size: 27px;
+  }
+
+  .aboutStat span {
+    font-size: 10px;
+  }
+
+  .aboutStat small {
+    display: none;
+  }
+
+
+  /* Mobile Cards */
+
+  .aboutCards {
+    gap: 13px;
+  }
+
+  .aboutCards::before {
+    display: none;
+  }
+
+  .aboutCard {
+    min-height: auto;
+
+    padding: 22px 19px;
+
+    grid-template-columns: 47px 1fr;
+
+    gap: 12px;
+
+    border-radius: 10px;
+  }
+
+  .aboutCard:hover {
+    transform: translateY(-3px);
+  }
+
+  .aboutCardNumber {
+    font-size: 21px;
+  }
+
+  .aboutCardContent h3 {
+    font-size: 18px;
+  }
+
+  .aboutCardContent h4 {
+    font-size: 10px;
+
+    line-height: 1.5;
+  }
+
+  .aboutCardContent p {
+    font-size: 11px;
+
+    line-height: 1.6;
+  }
+}
+
+
+/* =========================================================
+   ABOUT SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .about {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .aboutTitle {
+    font-size: clamp(36px, 10.8vw, 47px);
+  }
+
+  .aboutStats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .aboutStat:not(:first-child) {
+    padding-left: 11px;
+  }
+
+  .aboutStat strong {
+    font-size: 24px;
+  }
+
+  .aboutStat span {
+    font-size: 9px;
+  }
+
+  /* =========================================================
+   ABOUT CARD
+========================================================= */
+
+.aboutCard {
+  position: relative;
+
+  width: 100%;
+  min-height: 150px;
+
+  padding: 25px 27px;
+
+  display: grid;
+  grid-template-columns: 72px 1fr;
+
+  gap: 20px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(167, 139, 250, 0.14);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(139, 92, 246, 0.025)
+    ),
+    rgba(12, 11, 17, 0.72);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.18);
+
+  will-change: transform, opacity;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* Purple line */
+
+.aboutCard::after {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  top: 50%;
+
+  width: 2px;
+  height: 0;
+
+  transform: translateY(-50%);
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #8b5cf6,
+    #a78bfa,
+    transparent
+  );
+
+  opacity: 0;
+
+  box-shadow:
+    0 0 15px rgba(139, 92, 246, 0.7);
+
+  transition:
+    height 0.35s ease,
+    opacity 0.35s ease;
+}
+
+
+/* Card hover */
+
+.aboutCard:hover {
+  transform: translateY(-5px) translateX(-4px);
+
+  border-color: rgba(167, 139, 250, 0.48);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(139, 92, 246, 0.085)
+    ),
+    rgba(12, 11, 17, 0.9);
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.3),
+    0 0 35px rgba(124, 58, 237, 0.09);
+}
+
+.aboutCard:hover::after {
+  height: 70%;
+  opacity: 1;
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.aboutCardNumber {
+  padding-top: 3px;
+
+  color: rgba(167, 139, 250, 0.38);
+
+  font-size: 28px;
+  font-weight: 400;
+
+  letter-spacing: -1px;
+
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* Number glow on hover */
+
+.aboutCard:hover .aboutCardNumber {
+  color: #a78bfa;
+
+  transform: translateY(-2px);
+
+  text-shadow:
+    0 0 7px rgba(167, 139, 250, 0.9),
+    0 0 16px rgba(139, 92, 246, 0.7),
+    0 0 28px rgba(124, 58, 237, 0.4);
+}
+
+
+/* Tag also becomes slightly brighter */
+
+.aboutCardTag {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #8b5cf6;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  letter-spacing: 3px;
+
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+.aboutCard:hover .aboutCardTag {
+  color: #a78bfa;
+
+  text-shadow:
+    0 0 10px rgba(139, 92, 246, 0.45);
+}
+}
+/* =========================================================
+   ABOUT - MOVING STAR BACKGROUND
+========================================================= */
+
+.aboutStars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aboutStar {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.4),
+    0 0 10px rgba(255, 255, 255, 0.15);
+
+  animation:
+    aboutStarFloat 12s ease-in-out infinite,
+    aboutStarPulse 3.5s ease-in-out infinite;
+
+  will-change: transform, opacity;
+}
+
+
+/* Purple glowing stars */
+
+.star2,
+.star5,
+.star8,
+.star11 {
+  background: #a78bfa;
+
+  box-shadow:
+    0 0 6px rgba(167, 139, 250, 0.9),
+    0 0 14px rgba(139, 92, 246, 0.45),
+    0 0 24px rgba(124, 58, 237, 0.18);
+}
+
+
+/* =========================================================
+   STAR POSITIONS
+========================================================= */
+
+.star1 {
+  top: 14%;
+  left: 7%;
+
+  animation-duration: 14s, 3s;
+}
+
+.star2 {
+  top: 27%;
+  left: 18%;
+
+  width: 2px;
+  height: 2px;
+
+  animation-duration: 11s, 4s;
+  animation-delay: -3s;
+}
+
+.star3 {
+  top: 12%;
+  left: 38%;
+
+  width: 2px;
+  height: 2px;
+
+  animation-duration: 16s, 3.5s;
+  animation-delay: -6s;
+}
+
+.star4 {
+  top: 70%;
+  left: 9%;
+
+  width: 2px;
+  height: 2px;
+
+  animation-duration: 13s, 4.5s;
+  animation-delay: -2s;
+}
+
+.star5 {
+  top: 84%;
+  left: 30%;
+
+  width: 3px;
+  height: 3px;
+
+  animation-duration: 17s, 3s;
+  animation-delay: -8s;
+}
+
+.star6 {
+  top: 52%;
+  left: 46%;
+
+  width: 2px;
+  height: 2px;
+
+  animation-duration: 12s, 4s;
+  animation-delay: -4s;
+}
+
+.star7 {
+  top: 18%;
+  left: 61%;
+
+  width: 2px;
+  height: 2px;
+
+  animation-duration: 15s, 3.5s;
+  animation-delay: -7s;
+}
+
+.star8 {
+  top: 65%;
+  left: 58%;
+
+  width: 3px;
+  height: 3px;
+
+  animation-duration: 13s, 4s;
+  animation-delay: -5s;
+}
+
+.star9 {
+  top: 10%;
+  left: 81%;
+
+  width: 2px;
+  height: 2px;
+
+  animation-duration: 18s, 3s;
+  animation-delay: -9s;
+}
+
+.star10 {
+  top: 43%;
+  left: 91%;
+
+  width: 2px;
+  height: 2px;
+
+  animation-duration: 14s, 4.5s;
+  animation-delay: -6s;
+}
+
+.star11 {
+  top: 80%;
+  left: 85%;
+
+  width: 3px;
+  height: 3px;
+
+  animation-duration: 16s, 3.5s;
+  animation-delay: -3s;
+}
+
+.star12 {
+  top: 91%;
+  left: 68%;
+
+  width: 2px;
+  height: 2px;
+
+  animation-duration: 12s, 4s;
+  animation-delay: -7s;
+}
+
+
+/* =========================================================
+   STAR MOVEMENT
+========================================================= */
+
+@keyframes aboutStarFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate3d(12px, -18px, 0);
+  }
+
+  50% {
+    transform: translate3d(27px, -8px, 0);
+  }
+
+  75% {
+    transform: translate3d(10px, 16px, 0);
+  }
+}
+
+
+/* Soft twinkle */
+
+@keyframes aboutStarPulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+
+/* =========================================================
+   ABOUT CARD PREMIUM HOVER
+========================================================= */
+
+.aboutCardNumber {
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.aboutCard:hover {
+  transform: translateY(-5px) translateX(-4px);
+
+  border-color: rgba(167, 139, 250, 0.42);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(139, 92, 246, 0.075)
+    ),
+    rgba(12, 11, 17, 0.88);
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.3),
+    0 0 28px rgba(124, 58, 237, 0.08);
+}
+
+
+/* 01 / 02 / 03 glow */
+
+.aboutCard:hover .aboutCardNumber {
+  color: #b69cff;
+
+  transform: translateY(-2px);
+
+  text-shadow:
+    0 0 6px rgba(183, 156, 255, 0.95),
+    0 0 14px rgba(139, 92, 246, 0.75),
+    0 0 28px rgba(124, 58, 237, 0.45);
+}
+
+
+/* LEARN / CREATE / GROW */
+
+.aboutCardTag {
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+.aboutCard:hover .aboutCardTag {
+  color: #b69cff;
+
+  text-shadow:
+    0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  /* Fewer stars on mobile */
+
+  .star3,
+  .star6,
+  .star9,
+  .star12 {
+    display: none;
+  }
+
+  .aboutStar {
+    width: 2px;
+    height: 2px;
+  }
+
+  .aboutCard:hover {
+    transform: translateY(-3px);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .aboutStar {
+    animation: none;
+  }
+}
