@@ -7,30 +7,83 @@ function Navbar() {
     setMenuOpen(false)
   }
 
+  const toggleMenu = () => {
+    setMenuOpen((current) => !current)
+  }
+
   return (
     <nav className="navbar">
-      <a href="#home" className="logo" onClick={closeMenu}>
-        Gagana.
+
+      {/* Logo */}
+      <a
+        href="#home"
+        className="logo"
+        onClick={closeMenu}
+        aria-label="Go to home"
+      >
+        Gagana
       </a>
 
-      <div className={`navLinks ${menuOpen ? 'active' : ''}`}>
-        <a href="#home" onClick={closeMenu}>Home</a>
-        <a href="#about" onClick={closeMenu}>About</a>
-        <a href="#skills" onClick={closeMenu}>Skills</a>
-        <a href="#projects" onClick={closeMenu}>Projects</a>
-        <a href="#experience" onClick={closeMenu}>Experience</a>
-        <a href="#contact" onClick={closeMenu}>Contact</a>
+      {/* Navigation */}
+      <div
+        className={`navLinks ${menuOpen ? 'active' : ''}`}
+      >
+        <a
+          href="#home"
+          onClick={closeMenu}
+        >
+          Home
+        </a>
+
+        <a
+          href="#about"
+          onClick={closeMenu}
+        >
+          About
+        </a>
+
+        <a
+          href="#skills"
+          onClick={closeMenu}
+        >
+          Skills
+        </a>
+
+        <a
+          href="#projects"
+          onClick={closeMenu}
+        >
+          Projects
+        </a>
+
+        <a
+          href="#experience"
+          onClick={closeMenu}
+        >
+          Experience
+        </a>
+
+        <a
+          href="#contact"
+          onClick={closeMenu}
+        >
+          Contact
+        </a>
       </div>
 
+      {/* Mobile Menu */}
       <button
+        type="button"
         className={`menuButton ${menuOpen ? 'active' : ''}`}
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle navigation menu"
+        onClick={toggleMenu}
+        aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={menuOpen}
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span />
+        <span />
+        <span />
       </button>
+
     </nav>
   )
 }
