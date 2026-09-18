@@ -2071,3 +2071,914 @@
     animation: none;
   }
 }
+/* =========================================================
+   SKILLS SECTION
+========================================================= */
+
+.skills {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+padding: 80px 0 40px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      rgba(109, 40, 217, 0.14) 0%,
+      rgba(76, 29, 149, 0.06) 30%,
+      transparent 58%
+    ),
+    #09080f;
+}
+
+.skills::before {
+  content: '';
+  position: absolute;
+
+  width: 700px;
+  height: 700px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -45%);
+
+  border-radius: 50%;
+
+  background: rgba(124, 58, 237, 0.05);
+  filter: blur(140px);
+
+  pointer-events: none;
+}
+
+.skillsContainer {
+  position: relative;
+  z-index: 2;
+
+  width: min(1400px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.skillsHeading {
+  max-width: 680px;
+  margin-bottom: px;
+}
+
+.skillsLabel {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.skillsLabel > span:first-child {
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 4px;
+
+  color: #a78bfa;
+}
+
+.skillsLabelLine {
+  display: block;
+
+  width: 55px;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(167, 139, 250, 0.9),
+    rgba(167, 139, 250, 0)
+  );
+}
+
+.skillsTitle {
+  margin: 0;
+
+ font-size: clamp(44px, 4.2vw, 64px);
+  line-height: 0.98;
+
+  letter-spacing: -3px;
+
+  font-weight: 700;
+
+  color: #f8f7fb;
+}
+
+.skillsTitle > span {
+  color: #9b7cf6;
+}
+
+.skillsDescription {
+  max-width: 610px;
+
+  margin-top: 30px;
+
+  font-size: 15px;
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.52);
+}
+
+
+/* =========================================================
+   SKILLS GRID
+========================================================= */
+
+.skillsGrid {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+
+  gap: 22px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   SKILL CARD
+========================================================= */
+
+.skillCard {
+  position: relative;
+
+  height: 390px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 999px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(255, 255, 255, 0.015) 100%
+  );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 20px 60px rgba(0, 0, 0, 0.12);
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.skillCard:hover {
+  border-color: rgba(167, 139, 250, 0.42);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 25px 70px rgba(0, 0, 0, 0.22),
+    0 0 35px rgba(124, 58, 237, 0.08);
+}
+
+
+/* =========================================================
+   WATER
+========================================================= */
+
+.skillLiquid {
+  position: absolute;
+
+  z-index: 1;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 0%;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    #8b5cf6 0%,
+    #7c3aed 45%,
+    #5b21b6 75%,
+    #3b1478 100%
+  );
+
+  box-shadow:
+    0 -4px 18px rgba(139, 92, 246, 0.25);
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   WATER SURFACE
+   Thin waves - NO BIG CIRCLE / DOME
+========================================================= */
+
+.skillWave {
+  position: absolute;
+
+  left: 0;
+
+  width: 100%;
+
+  pointer-events: none;
+
+  will-change: transform;
+}
+
+.skillWaveOne {
+  top: -5px;
+
+  height: 10px;
+
+  background: #9b7cf6;
+
+  border-radius:
+    45% 55% 40% 60% /
+    55% 45% 55% 45%;
+
+  animation:
+    skillWaveOneMove 2s ease-in-out infinite alternate;
+}
+
+.skillWaveTwo {
+  top: -2px;
+
+  height: 7px;
+
+  background:
+    rgba(196, 181, 253, 0.32);
+
+  border-radius:
+    55% 45% 60% 40% /
+    45% 55% 45% 55%;
+
+  animation:
+    skillWaveTwoMove 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes skillWaveOneMove {
+  from {
+    transform:
+      translateX(-3%)
+      scaleX(1.06);
+  }
+
+  to {
+    transform:
+      translateX(3%)
+      scaleX(1.06);
+  }
+}
+
+@keyframes skillWaveTwoMove {
+  from {
+    transform:
+      translateX(3%)
+      scaleX(1.05);
+  }
+
+  to {
+    transform:
+      translateX(-3%)
+      scaleX(1.05);
+  }
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.skillCardContent {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.skillNumber {
+  position: absolute;
+
+  top: 30px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 10px;
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  color: rgba(255, 255, 255, 0.18);
+
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+.skillCard:hover .skillNumber {
+  color: rgba(255, 255, 255, 0.58);
+
+  text-shadow:
+    0 0 12px rgba(139, 92, 246, 0.35);
+}
+
+
+/* =========================================================
+   LOGO AREA
+   EXACT CENTER
+   NO CIRCLE
+========================================================= */
+
+.skillLogoArea {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 116px;
+  height: 116px;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+
+  border: none;
+  border-radius: 0;
+
+  box-shadow: none;
+
+  transform-style: preserve-3d;
+
+  will-change: transform;
+}
+
+
+/* =========================================================
+   REAL SVG LOGOS
+========================================================= */
+
+.skillLogo {
+  display: block;
+
+  width: 92px;
+  height: 92px;
+
+  max-width: 92px;
+  max-height: 92px;
+
+  object-fit: contain;
+
+  background: transparent;
+
+  border: none;
+  border-radius: 0;
+
+  box-shadow: none;
+
+  user-select: none;
+  pointer-events: none;
+
+  filter:
+    drop-shadow(
+      0 10px 18px
+      rgba(0, 0, 0, 0.24)
+    );
+
+  transition:
+    filter 0.3s ease;
+}
+
+.skillCard:hover .skillLogo {
+  filter:
+    drop-shadow(
+      0 12px 22px
+      rgba(0, 0, 0, 0.28)
+    )
+    drop-shadow(
+      0 0 10px
+      rgba(255, 255, 255, 0.06)
+    );
+}
+
+
+/* =========================================================
+   TEMPORARY ICONS
+   Round 02 / Round 03
+========================================================= */
+
+.skillIcon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 82px;
+  height: 82px;
+
+  font-size: 70px;
+
+  color: #ffffff;
+
+  background: transparent;
+
+  border: none;
+  border-radius: 0;
+
+  box-shadow: none;
+
+  user-select: none;
+  pointer-events: none;
+
+  filter:
+    drop-shadow(
+      0 10px 18px
+      rgba(0, 0, 0, 0.24)
+    );
+}
+
+
+/* =========================================================
+   SKILL NAME + CATEGORY
+========================================================= */
+
+.skillInfo {
+  position: absolute;
+
+  left: 18px;
+  right: 18px;
+
+  bottom: 38px;
+
+  text-align: center;
+}
+
+.skillInfo h3 {
+  margin: 0;
+
+  font-size: 17px;
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  letter-spacing: -0.3px;
+
+  color: #f7f5fb;
+
+  transition:
+    color 0.3s ease;
+}
+
+.skillInfo p {
+  margin: 8px 0 0;
+
+  font-size: 9px;
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.3);
+
+  transition:
+    color 0.3s ease;
+}
+
+.skillCard:hover .skillInfo h3 {
+  color: #ffffff;
+}
+
+.skillCard:hover .skillInfo p {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+
+/* =========================================================
+   IMPORTANT
+   GSAP CONTROLS WATER HEIGHT
+========================================================= */
+
+/*
+  DO NOT ADD:
+
+  .skillCard:hover .skillLiquid {
+    height: ...;
+  }
+*/
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .skills {
+    padding:
+      100px 0 90px;
+  }
+
+  .skillsContainer {
+    width:
+      min(100% - 48px, 1100px);
+  }
+
+  .skillsGrid {
+    grid-template-columns:
+      repeat(5, minmax(150px, 1fr));
+
+    gap: 15px;
+
+    overflow-x: auto;
+
+    padding:
+      5px 2px 20px;
+
+    scrollbar-width: none;
+  }
+
+  .skillsGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .skillCard {
+    min-width: 150px;
+
+    height: 350px;
+  }
+
+  .skillLogoArea {
+    top: 50%;
+
+    width: 100px;
+    height: 100px;
+
+    transform:
+      translate(-50%, -50%);
+  }
+
+  .skillLogo {
+    width: 78px;
+    height: 78px;
+
+    max-width: 78px;
+    max-height: 78px;
+  }
+
+  .skillIcon {
+    width: 72px;
+    height: 72px;
+
+    font-size: 60px;
+  }
+
+  .skillInfo h3 {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .skills {
+    min-height: auto;
+
+    padding:
+      85px 0 80px;
+  }
+
+  .skillsContainer {
+    width:
+      calc(100% - 36px);
+  }
+
+  .skillsHeading {
+    margin-bottom: 48px;
+  }
+
+  .skillsTitle {
+    font-size:
+      clamp(42px, 13vw, 58px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+  }
+
+  .skillsDescription {
+    margin-top: 22px;
+
+    font-size: 14px;
+  }
+
+  .skillsGrid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    overflow: visible;
+
+    padding: 0;
+  }
+
+  .skillCard {
+    min-width: 0;
+
+    height: 320px;
+  }
+
+  .skillNumber {
+    top: 25px;
+  }
+
+  .skillLogoArea {
+    top: 50%;
+
+    width: 90px;
+    height: 90px;
+
+    transform:
+      translate(-50%, -50%);
+  }
+
+  .skillLogo {
+    width: 72px;
+    height: 72px;
+
+    max-width: 72px;
+    max-height: 72px;
+  }
+
+  .skillIcon {
+    width: 68px;
+    height: 68px;
+
+    font-size: 55px;
+  }
+
+  .skillInfo {
+    left: 12px;
+    right: 12px;
+
+    bottom: 34px;
+  }
+
+  .skillInfo h3 {
+    font-size: 15px;
+  }
+
+  .skillInfo p {
+    font-size: 8px;
+
+    letter-spacing: 0.8px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+  .skillsContainer {
+    width:
+      calc(100% - 28px);
+  }
+
+  .skillsGrid {
+    gap: 10px;
+  }
+
+  .skillCard {
+    height: 290px;
+  }
+
+  .skillLogoArea {
+    top: 50%;
+
+    width: 80px;
+    height: 80px;
+
+    transform:
+      translate(-50%, -50%);
+  }
+
+  .skillLogo {
+    width: 64px;
+    height: 64px;
+
+    max-width: 64px;
+    max-height: 64px;
+  }
+
+  .skillIcon {
+    width: 60px;
+    height: 60px;
+
+    font-size: 48px;
+  }
+
+  .skillInfo {
+    left: 10px;
+    right: 10px;
+
+    bottom: 30px;
+  }
+
+  .skillInfo h3 {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .skillCard,
+  .skillLogo,
+  .skillIcon {
+    transition: none;
+  }
+
+  .skillWaveOne,
+  .skillWaveTwo {
+    animation: none;
+  }
+}
+/* =========================================================
+   SKILLS SPACE BACKGROUND
+========================================================= */
+
+.skillsBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+.skillsStars {
+  position: absolute;
+  inset: 0;
+}
+
+.skillsStar {
+  position: absolute;
+
+  width: 2px;
+  height: 2px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.3);
+
+  animation: skillsStarTwinkle 3.5s ease-in-out infinite;
+}
+
+.skillsStar:nth-child(3n) {
+  background: #a78bfa;
+
+  box-shadow:
+    0 0 7px rgba(167, 139, 250, 0.7),
+    0 0 14px rgba(139, 92, 246, 0.25);
+}
+
+
+/* Star positions */
+
+.skillsStar:nth-child(1) { top: 12%; left: 5%; }
+.skillsStar:nth-child(2) { top: 25%; left: 13%; }
+.skillsStar:nth-child(3) { top: 68%; left: 7%; }
+.skillsStar:nth-child(4) { top: 84%; left: 18%; }
+.skillsStar:nth-child(5) { top: 16%; left: 27%; }
+.skillsStar:nth-child(6) { top: 73%; left: 30%; }
+.skillsStar:nth-child(7) { top: 8%; left: 39%; }
+.skillsStar:nth-child(8) { top: 43%; left: 42%; }
+.skillsStar:nth-child(9) { top: 88%; left: 44%; }
+.skillsStar:nth-child(10) { top: 19%; left: 52%; }
+.skillsStar:nth-child(11) { top: 61%; left: 55%; }
+.skillsStar:nth-child(12) { top: 91%; left: 59%; }
+.skillsStar:nth-child(13) { top: 11%; left: 66%; }
+.skillsStar:nth-child(14) { top: 37%; left: 69%; }
+.skillsStar:nth-child(15) { top: 79%; left: 67%; }
+.skillsStar:nth-child(16) { top: 22%; left: 77%; }
+.skillsStar:nth-child(17) { top: 54%; left: 81%; }
+.skillsStar:nth-child(18) { top: 88%; left: 79%; }
+.skillsStar:nth-child(19) { top: 10%; left: 91%; }
+.skillsStar:nth-child(20) { top: 41%; left: 94%; }
+.skillsStar:nth-child(21) { top: 70%; left: 91%; }
+.skillsStar:nth-child(22) { top: 95%; left: 94%; }
+.skillsStar:nth-child(23) { top: 47%; left: 22%; }
+.skillsStar:nth-child(24) { top: 58%; left: 73%; }
+
+.skillsStar:nth-child(2n) {
+  animation-delay: -1.2s;
+}
+
+.skillsStar:nth-child(3n) {
+  animation-delay: -2.3s;
+}
+
+.skillsStar:nth-child(5n) {
+  animation-delay: -0.7s;
+}
+
+@keyframes skillsStarTwinkle {
+  0%,
+  100% {
+    opacity: 0.18;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.25);
+  }
+}
+
+
+/* =========================================================
+   THREE.JS WIREFRAME GLOBE
+========================================================= */
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .skillsGlobe {
+    width: 330px;
+    height: 330px;
+
+    right: -135px;
+    bottom: -110px;
+
+    opacity: 0.5;
+  }
+
+  .skillsStar:nth-child(2n) {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .skillsStar {
+    animation: none;
+  }
+}
