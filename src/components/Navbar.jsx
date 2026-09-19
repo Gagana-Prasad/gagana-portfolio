@@ -57,10 +57,10 @@ function Navbar() {
         </a>
 
         <a
-          href="#experience"
+          href="#experience $ leadership"
           onClick={closeMenu}
         >
-          Experience
+          Experience & Leadership
         </a>
 
         <a
