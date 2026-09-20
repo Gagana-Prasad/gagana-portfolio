@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 import roamlyVideo from '../assets/projects/roamly-preview.mp4'
@@ -131,6 +131,30 @@ function ProjectTablet({
   onEnter,
   onLeave,
 }) {
+  const tabletRef = useRef(null)
+  const [mobileActive, setMobileActive] = useState(false)
+
+  useEffect(() => {
+    const tablet = tabletRef.current
+    if (!tablet) return undefined
+
+    const mobileMedia = window.matchMedia('(max-width: 768px)')
+    if (!mobileMedia.matches) return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setMobileActive(entry.isIntersecting && entry.intersectionRatio >= 0.55)
+      },
+      {
+        threshold: [0, 0.25, 0.55, 0.75, 1],
+      },
+    )
+
+    observer.observe(tablet)
+
+    return () => observer.disconnect()
+  }, [])
+
   const handleLoadedMetadata = (event) => {
     const videoElement = event.currentTarget
 
@@ -149,7 +173,8 @@ function ProjectTablet({
 
   return (
     <div
-      className="projectTablet"
+      ref={tabletRef}
+      className={`projectTablet ${mobileActive ? 'projectTabletMobileActive' : ''}`}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >

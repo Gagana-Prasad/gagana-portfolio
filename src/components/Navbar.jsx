@@ -13,7 +13,6 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-
       {/* Logo */}
       <a
         href="#home"
@@ -26,64 +25,47 @@ function Navbar() {
 
       {/* Navigation */}
       <div
+        id="portfolio-navigation"
         className={`navLinks ${menuOpen ? 'active' : ''}`}
       >
-        <a
-          href="#home"
-          onClick={closeMenu}
-        >
+        <a href="#home" onClick={closeMenu}>
           Home
         </a>
 
-        <a
-          href="#about"
-          onClick={closeMenu}
-        >
+        <a href="#about" onClick={closeMenu}>
           About
         </a>
 
-        <a
-          href="#skills"
-          onClick={closeMenu}
-        >
+        <a href="#skills" onClick={closeMenu}>
           Skills
         </a>
 
-        <a
-          href="#projects"
-          onClick={closeMenu}
-        >
+        <a href="#projects" onClick={closeMenu}>
           Projects
         </a>
 
-        <a
-          href="#experience $ leadership"
-          onClick={closeMenu}
-        >
-          Experience & Leadership
+        <a href="#experience" onClick={closeMenu}>
+          Experience &amp; Leadership
         </a>
 
-        <a
-          href="#contact"
-          onClick={closeMenu}
-        >
+        <a href="#contact" onClick={closeMenu}>
           Contact
         </a>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Button */}
       <button
         type="button"
         className={`menuButton ${menuOpen ? 'active' : ''}`}
         onClick={toggleMenu}
         aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
         aria-expanded={menuOpen}
+        aria-controls="portfolio-navigation"
       >
         <span />
         <span />
         <span />
       </button>
-
     </nav>
   )
 }

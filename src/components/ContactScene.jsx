@@ -1,107 +1,177 @@
-import { Canvas, useFrame } from '@react-three/fiber'
-import {
-  Float,
-  RoundedBox,
-  useVideoTexture,
-} from '@react-three/drei'
-import { useRef } from 'react'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Float, RoundedBox } from '@react-three/drei'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 import linkedinVideo from '../assets/contact/linkedin-profile.mp4'
 
 function IPad() {
-  const groupRef = useRef()
+  const ipadRef = useRef()
+  const videoRef = useRef(null)
+  const [videoTexture, setVideoTexture] = useState(null)
+  const { size } = useThree()
 
-  const videoTexture = useVideoTexture(linkedinVideo, {
-    muted: true,
-    loop: true,
-    autoplay: true,
-    playsInline: true,
-    start: true,
-  })
+  const mobile = size.width <= 768
+  const small = size.width <= 480
+
+  useEffect(() => {
+    const video = document.createElement('video')
+
+    video.src = linkedinVideo
+    video.muted = true
+    video.defaultMuted = true
+    video.loop = true
+    video.autoplay = true
+    video.playsInline = true
+    video.preload = 'auto'
+    video.crossOrigin = 'anonymous'
+    video.setAttribute('muted', '')
+    video.setAttribute('playsinline', '')
+    video.setAttribute('webkit-playsinline', '')
+    video.style.display = 'none'
+
+    const texture = new THREE.VideoTexture(video)
+    texture.colorSpace = THREE.SRGBColorSpace
+    texture.minFilter = THREE.LinearFilter
+    texture.magFilter = THREE.LinearFilter
+    texture.generateMipmaps = false
+
+    videoRef.current = video
+    setVideoTexture(texture)
+
+    const playVideo = async () => {
+      try {
+        video.muted = true
+        if (video.readyState >= 1 && video.currentTime < 0.1) {
+          video.currentTime = 0.12
+        }
+        await video.play()
+      } catch {
+        // Mobile browsers may wait for the first user interaction.
+      }
+    }
+
+    const handleVisibility = () => {
+      if (!document.hidden) playVideo()
+    }
+
+    video.addEventListener('loadedmetadata', playVideo)
+    video.addEventListener('loadeddata', playVideo)
+    video.addEventListener('canplay', playVideo)
+    window.addEventListener('pageshow', playVideo)
+    document.addEventListener('visibilitychange', handleVisibility)
+    document.addEventListener('pointerdown', playVideo, { passive: true })
+    document.addEventListener('touchstart', playVideo, { passive: true })
+    document.addEventListener('scroll', playVideo, { passive: true, once: true })
+
+    video.load()
+    playVideo()
+
+    return () => {
+      video.removeEventListener('loadedmetadata', playVideo)
+      video.removeEventListener('loadeddata', playVideo)
+      video.removeEventListener('canplay', playVideo)
+      window.removeEventListener('pageshow', playVideo)
+      document.removeEventListener('visibilitychange', handleVisibility)
+      document.removeEventListener('pointerdown', playVideo)
+      document.removeEventListener('touchstart', playVideo)
+
+      video.pause()
+      video.removeAttribute('src')
+      video.load()
+
+      texture.dispose()
+      videoRef.current = null
+    }
+  }, [])
 
   useFrame((state) => {
-    if (!groupRef.current) return
+    if (!ipadRef.current) return
 
-    const targetY = state.pointer.x * 0.08
-    const targetX = -state.pointer.y * 0.05
+    const pointerX = mobile ? 0 : state.pointer.x
+    const pointerY = mobile ? 0 : state.pointer.y
 
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(
-      groupRef.current.rotation.y,
-      targetY,
-      0.04,
+    const targetRotationX = -0.035 - pointerY * 0.035
+    const targetRotationY = -0.08 + pointerX * 0.06
+
+    ipadRef.current.rotation.x = THREE.MathUtils.lerp(
+      ipadRef.current.rotation.x,
+      targetRotationX,
+      0.035,
     )
 
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(
-      groupRef.current.rotation.x,
-      targetX,
-      0.04,
+    ipadRef.current.rotation.y = THREE.MathUtils.lerp(
+      ipadRef.current.rotation.y,
+      targetRotationY,
+      0.035,
     )
   })
+
+  const scale = mobile ? (small ? 0.64 : 0.74) : 1
 
   return (
     <Float
-      speed={1.4}
-      rotationIntensity={0.04}
-      floatIntensity={0.22}
+      speed={mobile ? 0.9 : 1.25}
+      rotationIntensity={mobile ? 0.012 : 0.025}
+      floatIntensity={mobile ? 0.1 : 0.18}
     >
-      <group ref={groupRef}>
-        {/* IPAD BODY */}
-        <RoundedBox
-          args={[6.2, 4.15, 0.22]}
-          radius={0.18}
-          smoothness={8}
-        >
+      <group
+        ref={ipadRef}
+        rotation={[-0.035, -0.08, -0.025]}
+        scale={scale}
+      >
+        <RoundedBox args={[6.25, 4.18, 0.24]} radius={0.2} smoothness={10}>
           <meshStandardMaterial
             color="#17131f"
-            metalness={0.85}
-            roughness={0.22}
+            metalness={0.9}
+            roughness={0.2}
           />
         </RoundedBox>
 
-        {/* PURPLE EDGE */}
         <RoundedBox
-          args={[6.08, 4.03, 0.235]}
-          radius={0.16}
-          smoothness={8}
+          args={[6.12, 4.05, 0.255]}
+          radius={0.17}
+          smoothness={10}
           position={[0, 0, 0.025]}
         >
           <meshStandardMaterial
             color="#6d28d9"
-            metalness={0.65}
-            roughness={0.3}
+            metalness={0.72}
+            roughness={0.26}
           />
         </RoundedBox>
 
-        {/* BLACK BEZEL */}
         <RoundedBox
-          args={[5.94, 3.89, 0.25]}
-          radius={0.13}
-          smoothness={8}
-          position={[0, 0, 0.05]}
+          args={[5.96, 3.89, 0.27]}
+          radius={0.14}
+          smoothness={10}
+          position={[0, 0, 0.055]}
         >
           <meshStandardMaterial
             color="#030304"
-            metalness={0.2}
-            roughness={0.4}
+            metalness={0.25}
+            roughness={0.38}
           />
         </RoundedBox>
 
-        {/* LINKEDIN VIDEO */}
-        <mesh position={[0, 0, 0.185]}>
-          <planeGeometry args={[5.72, 3.67]} />
+        {videoTexture && (
+          <mesh position={[0, 0, 0.2]}>
+            <planeGeometry args={[5.72, 3.65]} />
+            <meshBasicMaterial
+              map={videoTexture}
+              toneMapped={false}
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+        )}
 
-          <meshBasicMaterial
-            map={videoTexture}
-            toneMapped={false}
+        <mesh position={[0, 1.91, 0.21]}>
+          <circleGeometry args={[0.032, 32]} />
+          <meshStandardMaterial
+            color="#08080c"
+            metalness={0.8}
+            roughness={0.2}
           />
-        </mesh>
-
-        {/* FRONT CAMERA */}
-        <mesh position={[0, 1.89, 0.2]}>
-          <circleGeometry args={[0.032, 24]} />
-
-          <meshStandardMaterial color="#111118" />
         </mesh>
       </group>
     </Float>
@@ -113,31 +183,33 @@ function ContactScene() {
     <div className="contactScene">
       <Canvas
         camera={{
-          position: [0, 0, 7],
-          fov: 50,
+          position: [0, 0, 7.4],
+          fov: 48,
         }}
         gl={{
           antialias: true,
           alpha: true,
         }}
         dpr={[1, 1.5]}
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'block',
+        }}
       >
         <ambientLight intensity={1.8} />
 
-        <directionalLight
-          position={[5, 5, 6]}
-          intensity={2.5}
-        />
+        <directionalLight position={[5, 5, 6]} intensity={2.8} />
 
         <directionalLight
-          position={[-4, -2, 5]}
-          intensity={1.5}
+          position={[-4, -3, 5]}
+          intensity={1.4}
           color="#8b5cf6"
         />
 
         <pointLight
-          position={[0, 0, -2]}
-          intensity={8}
+          position={[0, 0, -1]}
+          intensity={7}
           distance={8}
           color="#7c3aed"
         />

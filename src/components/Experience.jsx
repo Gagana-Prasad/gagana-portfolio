@@ -58,41 +58,52 @@ const experiences = [
 ]
 
 function ExperienceCard({ item, index, started }) {
+  const itemRef = useRef(null)
+  const [mobileActive, setMobileActive] = useState(false)
+
+  useEffect(() => {
+    const element = itemRef.current
+    if (!element) return undefined
+
+    const media = window.matchMedia('(max-width: 768px)')
+    if (!media.matches) return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setMobileActive(entry.isIntersecting && entry.intersectionRatio >= 0.52)
+      },
+      {
+        threshold: [0, 0.25, 0.52, 0.75, 1],
+      },
+    )
+
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <article
+      ref={itemRef}
       className={`experienceItem ${
-        item.side === 'left'
-          ? 'experienceItemLeft'
-          : 'experienceItemRight'
-      } ${started ? 'experienceItemStarted' : ''}`}
-      style={{
-        '--experience-delay': `${0.55 + index * 0.6}s`,
-      }}
+        item.side === 'left' ? 'experienceItemLeft' : 'experienceItemRight'
+      } ${started ? 'experienceItemStarted' : ''} ${
+        mobileActive ? 'experienceItemMobileActive' : ''
+      }`}
+      style={{ '--experience-delay': `${0.55 + index * 0.6}s` }}
     >
-      <span
-        className="experienceBigNumber"
-        aria-hidden="true"
-      >
+      <span className="experienceBigNumber" aria-hidden="true">
         {item.id}
       </span>
 
-      <span
-        className="experienceConnector"
-        aria-hidden="true"
-      />
+      <span className="experienceConnector" aria-hidden="true" />
 
-      <span
-        className="experienceNode"
-        aria-hidden="true"
-      >
+      <span className="experienceNode" aria-hidden="true">
         <i />
       </span>
 
       <div className="experienceCard">
         <div className="experienceCardTop">
-          <span className="experienceType">
-            {item.type}
-          </span>
+          <span className="experienceType">{item.type}</span>
 
           <a
             href={item.linkedin}
@@ -107,24 +118,13 @@ function ExperienceCard({ item, index, started }) {
         </div>
 
         <h3>{item.title}</h3>
-
-        {item.role && (
-          <h4>{item.role}</h4>
-        )}
+        {item.role && <h4>{item.role}</h4>}
 
         <div className="experienceOrganization">
-          <span className="experienceOrgIcon">
-            ✦
-          </span>
-
+          <span className="experienceOrgIcon">✦</span>
           <div>
-            <span>
-              {item.organization}
-            </span>
-
-            <small>
-              {item.university}
-            </small>
+            <span>{item.organization}</span>
+            <small>{item.university}</small>
           </div>
         </div>
 
@@ -132,9 +132,7 @@ function ExperienceCard({ item, index, started }) {
 
         <div className="experienceTags">
           {item.tags.map((tag) => (
-            <span key={tag}>
-              {tag}
-            </span>
+            <span key={tag}>{tag}</span>
           ))}
         </div>
       </div>
@@ -148,10 +146,7 @@ function Experience() {
 
   useEffect(() => {
     const section = sectionRef.current
-
-    if (!section) {
-      return undefined
-    }
+    if (!section) return undefined
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -160,45 +155,29 @@ function Experience() {
           observer.disconnect()
         }
       },
-      {
-        threshold: 0.18,
-      },
+      { threshold: 0.18 },
     )
 
     observer.observe(section)
-
-    return () => {
-      observer.disconnect()
-    }
+    return () => observer.disconnect()
   }, [])
 
   return (
     <section
-      className={`experience ${
-        started ? 'experienceStarted' : ''
-      }`}
+      className={`experience ${started ? 'experienceStarted' : ''}`}
       id="experience"
       ref={sectionRef}
     >
-      {/* Background Stars */}
-      <div
-        className="experienceStars"
-        aria-hidden="true"
-      >
-        {Array.from({ length: 16 }).map(
-          (_, index) => (
-            <span
-              key={index}
-              className={`experienceStar experienceStar${
-                index + 1
-              }`}
-            />
-          ),
-        )}
+      <div className="experienceStars" aria-hidden="true">
+        {Array.from({ length: 16 }).map((_, index) => (
+          <span
+            key={index}
+            className={`experienceStar experienceStar${index + 1}`}
+          />
+        ))}
       </div>
 
       <div className="experienceContainer">
-        {/* Section Heading */}
         <header className="experienceIntro">
           <div className="experienceLabel">
             <span>EXPERIENCE</span>
@@ -208,49 +187,34 @@ function Experience() {
           <h2>
             Experience &amp;
             <br />
-
-            <strong>
-              Leadership.
-            </strong>
+            <strong>Leadership.</strong>
           </h2>
 
           <p>
-            Roles, communities and experiences
-            that have helped me grow through
-            collaboration, responsibility and
-            leadership.
+            Roles, communities and experiences that have helped me grow through
+            collaboration, responsibility and leadership.
           </p>
         </header>
 
-        {/* Central Timeline */}
         <div className="experienceTimeline">
           <span className="experienceTimelineBase" />
-
           <span className="experienceTimelineProgress" />
-
           <span className="experienceTimelineStart" />
-
           <span className="experienceTimelineEnd" />
         </div>
 
-        {/* Experience Cards */}
         <div className="experienceItems">
-          {experiences.map(
-            (item, index) => (
-              <ExperienceCard
-                key={item.id}
-                item={item}
-                index={index}
-                started={started}
-              />
-            ),
-          )}
+          {experiences.map((item, index) => (
+            <ExperienceCard
+              key={item.id}
+              item={item}
+              index={index}
+              started={started}
+            />
+          ))}
         </div>
 
-        <div
-          className="experienceMore"
-          aria-hidden="true"
-        >
+        <div className="experienceMore" aria-hidden="true">
           <i />
           <span>MORE TO COME</span>
         </div>

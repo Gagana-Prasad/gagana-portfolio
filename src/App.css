@@ -5885,3 +5885,1928 @@ padding: 80px 0 40px;
     justify-self: start;
   }
 }
+/* =========================================================
+   MOBILE PASS - NAVBAR + HERO
+========================================================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 70px;
+    padding: 0 20px;
+    background: rgba(7, 7, 10, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .logo {
+    position: relative;
+    z-index: 1002;
+  }
+
+  .menuButton {
+    position: relative;
+    z-index: 1002;
+  }
+
+  .navLinks {
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+
+    width: 100%;
+    height: 100dvh;
+
+    padding: 110px 24px 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0;
+
+    background:
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(124, 58, 237, 0.15),
+        transparent 35%
+      ),
+      rgba(6, 6, 9, 0.98);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-12px);
+
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .navLinks.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .navLinks a {
+    width: 100%;
+    padding: 18px 4px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+    font-size: clamp(20px, 6vw, 27px);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .navLinks a::after {
+    display: none;
+  }
+
+  .hero {
+    min-height: 100svh;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .heroScene {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .heroOverlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 5, 8, 0.04) 0%,
+        rgba(5, 5, 8, 0.08) 35%,
+        rgba(5, 5, 8, 0.66) 58%,
+        rgba(5, 5, 8, 0.95) 100%
+      );
+  }
+
+  .heroContent {
+    position: relative;
+    z-index: 10;
+
+    width: 100%;
+    max-width: none;
+
+    min-height: 100svh;
+
+    padding:
+      clamp(390px, 53vh, 500px)
+      20px
+      86px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .heroGreeting {
+    margin-bottom: 10px;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+  }
+
+  .heroName {
+    max-width: 100%;
+
+    font-size: clamp(42px, 12.5vw, 62px);
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+  }
+
+  .heroRole {
+    margin-top: 14px;
+
+    font-size: clamp(18px, 5vw, 23px);
+    line-height: 1.2;
+  }
+
+  .heroUniversity {
+    margin-top: 12px;
+
+    max-width: 330px;
+
+    font-size: 9px;
+    line-height: 1.5;
+    letter-spacing: 0.11em;
+  }
+
+  .heroDescription {
+    width: 100%;
+    max-width: 390px;
+
+    margin-top: 18px;
+
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .heroActions {
+    width: 100%;
+
+    margin-top: 24px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    min-height: 46px;
+    padding: 0 19px;
+  }
+
+  .heroSideText {
+    display: none;
+  }
+
+  .scrollIndicator {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding-inline: 18px;
+  }
+
+  .heroContent {
+    padding:
+      clamp(370px, 51vh, 455px)
+      18px
+      72px;
+  }
+
+  .heroDescription {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroContent {
+    padding-top: 355px;
+  }
+
+  .heroName {
+    font-size: 40px;
+  }
+
+  .heroActions {
+    align-items: stretch;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    flex: 1 1 auto;
+  }
+}
+/* =========================================================
+   FINAL MOBILE HERO COMPOSITION
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .hero {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 100svh;
+
+    padding: 0;
+
+    display: block;
+
+    overflow: hidden;
+
+    background:
+      radial-gradient(
+        circle at 75% 22%,
+        rgba(124, 58, 237, 0.08),
+        transparent 30%
+      ),
+      #050507;
+  }
+
+  .heroScene {
+    position: absolute;
+
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: auto;
+
+    width: 100%;
+    height: 340px;
+
+    z-index: 1;
+
+    pointer-events: none;
+  }
+
+  .heroOverlay {
+    position: absolute;
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 5, 7, 0) 0%,
+        rgba(5, 5, 7, 0.02) 26%,
+        rgba(5, 5, 7, 0.25) 38%,
+        rgba(5, 5, 7, 0.88) 49%,
+        #050507 59%,
+        #050507 100%
+      );
+
+    pointer-events: none;
+  }
+
+  .heroContent {
+    position: relative;
+
+    z-index: 10;
+
+    width: 100%;
+    max-width: none;
+
+    min-height: 100svh;
+
+    padding:
+      390px
+      22px
+      64px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    text-align: left;
+  }
+
+  .heroGreeting {
+    margin: 0 0 10px;
+
+    color: rgba(220, 215, 230, 0.62);
+
+    font-size: 10px;
+    font-weight: 500;
+
+    letter-spacing: 3.2px;
+  }
+
+  .heroName {
+    width: 100%;
+
+    margin: 0;
+
+    font-size: clamp(42px, 11.8vw, 58px);
+    font-weight: 700;
+
+    line-height: 0.98;
+    letter-spacing: -2.5px;
+
+    white-space: normal;
+  }
+
+  .heroRole {
+    margin: 14px 0 0;
+
+    font-size: clamp(20px, 5.2vw, 24px);
+
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+  }
+
+  .heroUniversity {
+    max-width: 100%;
+
+    margin-top: 10px;
+
+    gap: 8px;
+
+    font-size: 8.5px;
+
+    line-height: 1.5;
+    letter-spacing: 1px;
+  }
+
+  .heroUniversity::before {
+    width: 5px;
+    height: 5px;
+  }
+
+  .heroDescription {
+    width: 100%;
+    max-width: 410px;
+
+    margin: 20px 0 0;
+
+    color: rgba(218, 214, 225, 0.65);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+
+  .heroActions {
+    width: 100%;
+
+    margin-top: 24px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+
+    padding: 0 14px;
+
+    font-size: 13px;
+  }
+
+  .primaryButton {
+    gap: 12px;
+  }
+
+  .heroSideText,
+  .scrollIndicator {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .heroScene {
+    top: 70px;
+
+    height: 310px;
+  }
+
+  .heroContent {
+    padding:
+      355px
+      18px
+      58px;
+  }
+
+  .heroName {
+    font-size: clamp(40px, 11.6vw, 51px);
+
+    letter-spacing: -2.2px;
+  }
+
+  .heroRole {
+    margin-top: 13px;
+
+    font-size: 20px;
+  }
+
+  .heroUniversity {
+    font-size: 8px;
+
+    letter-spacing: 0.85px;
+  }
+
+  .heroDescription {
+    max-width: 370px;
+
+    margin-top: 18px;
+
+    font-size: 12.5px;
+  }
+
+  .heroActions {
+    margin-top: 22px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .heroScene {
+    height: 285px;
+  }
+
+  .heroContent {
+    padding:
+      330px
+      16px
+      52px;
+  }
+
+  .heroName {
+    font-size: 38px;
+  }
+
+  .heroRole {
+    font-size: 18px;
+  }
+
+  .heroActions {
+    grid-template-columns: 1fr;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    min-height: 46px;
+  }
+}
+
+
+/* =========================================================
+   FINAL RESPONSIVE CONSOLIDATION
+   Added for phone/tablet layouts. Desktop styles above remain unchanged.
+========================================================= */
+
+@media (max-width: 768px) {
+  html, body, #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .navbar {
+    padding-inline: 20px;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 92px 20px 78px;
+  }
+
+  .aboutContainer {
+    gap: 52px;
+  }
+
+  .aboutTitle {
+    font-size: clamp(39px, 10.8vw, 52px);
+    line-height: 1.04;
+  }
+
+  .aboutDescription {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .aboutStats {
+    gap: 0;
+  }
+
+  .aboutCards {
+    width: 100%;
+  }
+
+  .aboutCard {
+    min-height: 0;
+    padding: 20px 18px;
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 12px;
+    border-radius: 12px;
+  }
+
+  .aboutCardNumber {
+    font-size: 21px;
+  }
+
+  /* SKILLS */
+  .skills {
+    min-height: auto;
+    padding: 90px 20px 82px;
+  }
+
+  .skillsContainer {
+    width: 100%;
+  }
+
+  .skillsHeading {
+    margin-bottom: 44px;
+  }
+
+  .skillsTitle {
+    font-size: clamp(42px, 11.5vw, 56px);
+    line-height: 1.02;
+  }
+
+  .skillsDescription {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .skillsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .skillCard {
+    height: 305px;
+    min-width: 0;
+  }
+
+  .skillCard:hover {
+    transform: none;
+  }
+
+  /* PROJECTS */
+  .projects {
+    min-height: auto;
+    padding: 92px 0 82px;
+    overflow: hidden;
+  }
+
+  .projectsContainer {
+    width: calc(100% - 36px);
+    min-height: 0;
+    margin: 0 auto;
+  }
+
+  .projectsIntro {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 58px;
+  }
+
+  .projectsIntro h2,
+  .projectsTitle {
+    font-size: clamp(44px, 12vw, 58px);
+    line-height: 0.94;
+  }
+
+  .projectsIntro > p {
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .projectsGlobe {
+    width: 250px;
+    height: 250px;
+    top: 92px;
+    right: -100px;
+    opacity: 0.68;
+  }
+
+  .projectItem,
+  .projectOne,
+  .projectTwo,
+  .projectThree {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 74px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .projectNumberArea,
+  .projectNumberRight {
+    display: none;
+  }
+
+  .projectVisual,
+  .projectVisualLeft,
+  .projectVisualRight {
+    width: 100%;
+    order: 1;
+  }
+
+  .projectTablet {
+    width: 100%;
+    transform: none !important;
+    border-radius: 15px;
+  }
+
+  .projectDetails {
+    width: 100%;
+    max-width: none;
+    order: 2;
+    padding: 0;
+    text-align: left;
+  }
+
+  .projectsQuote {
+    position: relative;
+    inset: auto;
+    margin-top: 12px;
+  }
+
+  /* EXPERIENCE */
+  .experience {
+    min-height: auto;
+    padding: 92px 0 82px;
+  }
+
+  .experienceContainer {
+    width: calc(100% - 36px);
+    min-height: 0;
+  }
+
+  .experienceIntro {
+    width: 100%;
+  }
+
+  .experienceIntro h2 {
+    font-size: clamp(44px, 11.5vw, 58px);
+    line-height: 0.96;
+  }
+
+  .experienceIntro p {
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .experienceTimeline {
+    left: 16px;
+    top: 248px;
+    height: calc(100% - 305px);
+  }
+
+  .experienceItems {
+    margin-top: 68px;
+    padding-left: 58px;
+    gap: 28px;
+  }
+
+  .experienceCard {
+    min-height: 0;
+    padding: 24px 24px 22px;
+    border-radius: 14px;
+  }
+
+  .experienceCardTop {
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .experienceCard h3 {
+    font-size: clamp(20px, 5.4vw, 26px);
+    line-height: 1.15;
+  }
+
+  .experienceLinkedin {
+    flex-shrink: 0;
+    padding: 9px 13px;
+    font-size: 8px;
+  }
+
+  .experienceItemLeft .experienceConnector,
+  .experienceItemRight .experienceConnector {
+    left: -42px;
+    width: 42px;
+  }
+
+  .experienceItemLeft .experienceNode,
+  .experienceItemRight .experienceNode {
+    left: -51px;
+  }
+
+  /* CONTACT */
+  .contact {
+    min-height: auto;
+    padding: 92px 0 0;
+  }
+
+  .contactContainer {
+    width: calc(100% - 36px);
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .contactTitle {
+    font-size: clamp(45px, 12vw, 58px);
+    line-height: 1;
+  }
+
+  .contactDescription {
+    max-width: 100%;
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .contactLinks {
+    gap: 10px;
+  }
+
+  .contactLink {
+    min-height: 70px;
+    padding: 10px 12px;
+    grid-template-columns: 24px 40px minmax(0, 1fr) 30px;
+    gap: 10px;
+  }
+
+  .contactLinkInfo strong {
+    font-size: 11px;
+  }
+
+  .contactVisual {
+    width: 100%;
+    height: 330px;
+    overflow: visible;
+  }
+
+  .contactVisualGlow {
+    width: 90%;
+    height: 240px;
+    filter: blur(75px);
+  }
+
+  .contactScene {
+    width: 100%;
+    max-width: 560px;
+    height: 320px;
+    overflow: visible;
+  }
+
+  .portfolioFooter {
+    width: calc(100% - 36px);
+    margin-top: 42px;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 25px 0 30px;
+  }
+
+  .footerCopyright,
+  .backToTop {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding-inline: 18px;
+  }
+
+  .about,
+  .skills {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .aboutTitle {
+    font-size: clamp(38px, 11.2vw, 48px);
+  }
+
+  .aboutStats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .aboutStat:not(:first-child) {
+    padding-left: 12px;
+  }
+
+  .aboutStat strong {
+    font-size: clamp(23px, 7vw, 29px);
+  }
+
+  .aboutStat span {
+    font-size: 9px;
+  }
+
+  .aboutCard {
+    padding: 20px 17px;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .aboutCardNumber {
+    font-size: 20px;
+  }
+
+  .skillsGrid {
+    gap: 12px;
+  }
+
+  .skillCard {
+    height: 292px;
+  }
+
+  .projectsContainer,
+  .experienceContainer,
+  .contactContainer,
+  .portfolioFooter {
+    width: calc(100% - 32px);
+  }
+
+  .projectsGlobe {
+    width: 220px;
+    height: 220px;
+    right: -105px;
+  }
+
+  .experienceTimeline {
+    left: 14px;
+  }
+
+  .experienceItems {
+    padding-left: 52px;
+  }
+
+  .experienceItemLeft .experienceConnector,
+  .experienceItemRight .experienceConnector {
+    left: -38px;
+    width: 38px;
+  }
+
+  .experienceItemLeft .experienceNode,
+  .experienceItemRight .experienceNode {
+    left: -47px;
+  }
+
+  .experienceCard {
+    padding: 21px 18px 20px;
+  }
+
+  .experienceCardTop {
+    flex-direction: column;
+  }
+
+  .experienceLinkedin {
+    align-self: flex-start;
+  }
+
+  .contactLink {
+    grid-template-columns: 20px 38px minmax(0, 1fr) 26px;
+    padding-inline: 10px;
+  }
+
+  .contactLinkIcon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .contactVisual {
+    height: 285px;
+  }
+
+  .contactScene {
+    height: 275px;
+  }
+}
+
+@media (max-width: 360px) {
+  .about,
+  .skills {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .skillsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .skillCard {
+    height: 270px;
+  }
+
+  .projectsContainer,
+  .experienceContainer,
+  .contactContainer,
+  .portfolioFooter {
+    width: calc(100% - 28px);
+  }
+
+  .experienceItems {
+    padding-left: 46px;
+  }
+
+  .experienceCard {
+    padding: 19px 15px;
+  }
+
+  .contactLinkNumber {
+    display: none;
+  }
+
+  .contactLink {
+    grid-template-columns: 38px minmax(0, 1fr) 24px;
+  }
+
+  .contactVisual {
+    height: 250px;
+  }
+
+  .contactScene {
+    height: 245px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .projectTablet:hover,
+  .contactLink:hover,
+  .experienceCard:hover,
+  .aboutCard:hover {
+    transform: none;
+  }
+}
+
+
+/* =========================================================
+   FINAL MOBILE HERO — AUTHORITATIVE OVERRIDE
+   The mobile portrait is a normal image for predictable placement.
+========================================================= */
+
+.heroMobileVisual {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    padding: 0;
+    overflow: hidden;
+    display: block;
+    background:
+      radial-gradient(circle at 78% 25%, rgba(124, 58, 237, 0.09), transparent 31%),
+      #050507;
+  }
+
+  .heroScene {
+    position: absolute;
+    inset: 70px 0 auto;
+    width: 100%;
+    height: 330px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .heroOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 5, 7, 0) 0%,
+        rgba(5, 5, 7, 0.02) 30%,
+        rgba(5, 5, 7, 0.35) 43%,
+        rgba(5, 5, 7, 0.92) 54%,
+        #050507 64%,
+        #050507 100%
+      );
+  }
+
+  .heroMobileVisual {
+    display: block;
+    position: absolute;
+    top: 112px;
+    right: 15px;
+    z-index: 4;
+    width: min(48vw, 220px);
+    height: 260px;
+    pointer-events: none;
+  }
+
+  .heroMobileVisual::before {
+    content: "";
+    position: absolute;
+    inset: 14% -8% 5% -8%;
+    z-index: -1;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(124, 58, 237, 0.16),
+      rgba(124, 58, 237, 0.04) 48%,
+      transparent 72%
+    );
+    filter: blur(18px);
+  }
+
+  .heroMobileVisual img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.34));
+  }
+
+  .heroContent {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: none;
+    min-height: 100svh;
+    padding: 385px 22px 58px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .heroGreeting {
+    margin: 0 0 10px;
+    font-size: 10px;
+    letter-spacing: 3.2px;
+  }
+
+  .heroName {
+    width: 100%;
+    margin: 0;
+    font-size: clamp(42px, 11.5vw, 56px);
+    line-height: 0.98;
+    letter-spacing: -2.4px;
+    white-space: normal;
+  }
+
+  .heroRole {
+    margin: 14px 0 0;
+    font-size: clamp(20px, 5vw, 24px);
+    line-height: 1.2;
+  }
+
+  .heroUniversity {
+    margin-top: 10px;
+    font-size: 8.5px;
+    letter-spacing: 0.9px;
+  }
+
+  .heroDescription {
+    width: 100%;
+    max-width: 410px;
+    margin: 20px 0 0;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .heroActions {
+    width: 100%;
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .heroSideText,
+  .scrollIndicator {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroScene {
+    height: 305px;
+  }
+
+  .heroMobileVisual {
+    top: 108px;
+    right: 10px;
+    width: min(50vw, 205px);
+    height: 245px;
+  }
+
+  .heroContent {
+    padding: 365px 20px 54px;
+  }
+
+  .heroName {
+    font-size: clamp(40px, 11.2vw, 51px);
+    letter-spacing: -2.1px;
+  }
+
+  .heroRole {
+    font-size: 20px;
+  }
+
+  .heroDescription {
+    font-size: 12.5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroMobileVisual {
+    top: 105px;
+    right: 6px;
+    width: 51vw;
+    height: 225px;
+  }
+
+  .heroContent {
+    padding: 340px 16px 48px;
+  }
+
+  .heroName {
+    font-size: 38px;
+  }
+
+  .heroRole {
+    font-size: 18px;
+  }
+
+  .heroActions {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   MOBILE HERO FINAL COMPACT COMPOSITION
+========================================================= */
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100svh;
+  }
+
+  .heroScene {
+    top: 70px;
+    height: 255px;
+  }
+
+  .heroMobileVisual {
+    top: 86px;
+    right: 12px;
+    width: min(48vw, 215px);
+    height: 245px;
+  }
+
+  .heroMobileVisual::before {
+    inset: 12% -6% 3%;
+    opacity: 0.8;
+  }
+
+  .heroOverlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 5, 7, 0) 0%,
+        rgba(5, 5, 7, 0.01) 25%,
+        rgba(5, 5, 7, 0.22) 35%,
+        rgba(5, 5, 7, 0.78) 43%,
+        #050507 52%,
+        #050507 100%
+      );
+  }
+
+  .heroContent {
+    min-height: 100svh;
+    padding: 315px 22px 34px;
+  }
+
+  .heroGreeting {
+    margin-bottom: 8px;
+  }
+
+  .heroName {
+    font-size: clamp(41px, 11vw, 54px);
+    line-height: 0.98;
+  }
+
+  .heroRole {
+    margin-top: 12px;
+  }
+
+  .heroUniversity {
+    margin-top: 8px;
+  }
+
+  .heroDescription {
+    margin-top: 17px;
+    line-height: 1.65;
+  }
+
+  .heroActions {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroScene {
+    height: 235px;
+  }
+
+  .heroMobileVisual {
+    top: 82px;
+    right: 8px;
+    width: min(49vw, 198px);
+    height: 228px;
+  }
+
+  .heroContent {
+    padding: 295px 20px 30px;
+  }
+
+  .heroName {
+    font-size: clamp(39px, 10.9vw, 49px);
+  }
+
+  .heroRole {
+    font-size: 19px;
+  }
+
+  .heroDescription {
+    margin-top: 16px;
+    font-size: 12.5px;
+  }
+
+  .heroActions {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroMobileVisual {
+    top: 80px;
+    right: 5px;
+    width: 49vw;
+    height: 210px;
+  }
+
+  .heroContent {
+    padding: 276px 16px 26px;
+  }
+
+  .heroName {
+    font-size: 37px;
+  }
+
+  .heroRole {
+    font-size: 18px;
+  }
+}
+/* FINAL MOBILE HERO HEIGHT FIX */
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    height: auto;
+  }
+
+  .heroContent {
+    min-height: auto;
+    padding-bottom: 72px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContent {
+    padding-bottom: 68px;
+  }
+}
+
+
+/* =========================================================
+   ABOUT — FINAL MOBILE SCROLL FOCUS
+   Mobile cards automatically receive the desktop-hover feel
+   while they pass through the active viewport area.
+========================================================= */
+
+@media (max-width: 768px) {
+  .about {
+    min-height: auto;
+    padding: 92px 20px 82px;
+  }
+
+  .aboutContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  .aboutContent {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .aboutBackgroundText {
+    top: 44px;
+    font-size: 25vw;
+    letter-spacing: 5px;
+    opacity: 0.75;
+  }
+
+  .aboutLabel {
+    margin-bottom: 17px;
+    font-size: 9px;
+    letter-spacing: 3px;
+  }
+
+  .aboutLabelLine {
+    width: 34px;
+  }
+
+  .aboutTitle {
+    font-size: clamp(37px, 10.8vw, 50px);
+    line-height: 1.04;
+    letter-spacing: -2px;
+  }
+
+  .aboutDescription {
+    max-width: 100%;
+    margin-top: 22px;
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+
+  .aboutDescription + .aboutDescription {
+    margin-top: 13px;
+  }
+
+  .aboutButton {
+    min-height: 48px;
+    margin-top: 27px;
+    padding: 0 20px;
+    font-size: 13px;
+  }
+
+  .aboutStats {
+    margin-top: 45px;
+    padding-top: 23px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .aboutStat {
+    min-width: 0;
+  }
+
+  .aboutStat:not(:first-child) {
+    padding-left: 14px;
+  }
+
+  .aboutStat:not(:first-child)::before {
+    height: 47px;
+  }
+
+  .aboutStat strong {
+    font-size: clamp(23px, 7vw, 28px);
+  }
+
+  .aboutStat span {
+    margin-top: 7px;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .aboutStat small {
+    display: none;
+  }
+
+  .aboutCards {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .aboutCards::before {
+    display: none;
+  }
+
+  .aboutCard {
+    width: 100%;
+    min-height: 0;
+    padding: 21px 18px;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 12px;
+    border-radius: 12px;
+    transform: translateY(0);
+    will-change: transform, border-color, box-shadow;
+    transition:
+      transform 0.38s ease,
+      border-color 0.38s ease,
+      background 0.38s ease,
+      box-shadow 0.38s ease;
+  }
+
+  .aboutCard::after {
+    top: 50%;
+    width: 2px;
+    height: 0;
+    transform: translateY(-50%);
+    opacity: 0;
+    box-shadow: 0 0 14px rgba(139, 92, 246, 0.7);
+    transition:
+      height 0.38s ease,
+      opacity 0.38s ease;
+  }
+
+  .aboutCardNumber {
+    padding-top: 2px;
+    font-size: 20px;
+    transition:
+      color 0.35s ease,
+      text-shadow 0.35s ease,
+      transform 0.35s ease;
+  }
+
+  .aboutCardTag {
+    margin-bottom: 6px;
+    font-size: 7.5px;
+    transition:
+      color 0.35s ease,
+      text-shadow 0.35s ease;
+  }
+
+  .aboutCardContent h3 {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .aboutCardContent h4 {
+    margin-top: 6px;
+    font-size: 9.5px;
+    line-height: 1.5;
+  }
+
+  .aboutCardContent p {
+    margin-top: 9px;
+    font-size: 11px;
+    line-height: 1.62;
+  }
+
+  .aboutCard.aboutCardMobileActive {
+    transform: translateY(-5px) scale(1.012);
+    border-color: rgba(167, 139, 250, 0.48);
+    background:
+      linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(139, 92, 246, 0.09)
+      ),
+      rgba(12, 11, 17, 0.9);
+    box-shadow:
+      0 22px 50px rgba(0, 0, 0, 0.32),
+      0 0 30px rgba(124, 58, 237, 0.11);
+  }
+
+  .aboutCard.aboutCardMobileActive::after {
+    height: 72%;
+    opacity: 1;
+  }
+
+  .aboutCard.aboutCardMobileActive .aboutCardNumber {
+    color: #a78bfa;
+    transform: translateY(-2px);
+    text-shadow:
+      0 0 7px rgba(167, 139, 250, 0.85),
+      0 0 16px rgba(139, 92, 246, 0.55);
+  }
+
+  .aboutCard.aboutCardMobileActive .aboutCardTag {
+    color: #a78bfa;
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 88px 18px 76px;
+  }
+
+  .aboutContainer {
+    gap: 50px;
+  }
+
+  .aboutTitle {
+    font-size: clamp(35px, 10.5vw, 45px);
+    letter-spacing: -1.8px;
+  }
+
+  .aboutDescription {
+    font-size: 13px;
+  }
+
+  .aboutStats {
+    margin-top: 40px;
+  }
+
+  .aboutStat:not(:first-child) {
+    padding-left: 10px;
+  }
+
+  .aboutStat strong {
+    font-size: 23px;
+  }
+
+  .aboutStat span {
+    font-size: 8.5px;
+  }
+
+  .aboutCard {
+    min-height: 0;
+    padding: 19px 16px;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 10px;
+    border-radius: 12px;
+  }
+
+  .aboutCardNumber {
+    font-size: 18px;
+  }
+
+  .aboutCardContent h3 {
+    font-size: 17px;
+  }
+
+  .aboutCardContent h4 {
+    font-size: 9px;
+  }
+
+  .aboutCardContent p {
+    font-size: 10.5px;
+  }
+}
+
+/* =========================================================
+   FINAL PROJECTS MOBILE REFINEMENT
+   Desktop/tablet styles above remain unchanged.
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .projects {
+    padding-top: 78px;
+    padding-bottom: 72px;
+    overflow: hidden;
+  }
+
+  .projectsContainer {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .projectsHeader {
+    margin-bottom: 42px;
+  }
+
+  .projectsTitle {
+    margin-bottom: 14px;
+  }
+
+  .projectsDescription,
+  .projectsSubtitle {
+    margin-bottom: 0;
+  }
+
+  .projectsList {
+    gap: 64px;
+  }
+
+  .projectItem {
+    margin: 0;
+    gap: 26px;
+  }
+
+  .projectVisual,
+  .projectContent {
+    margin: 0;
+  }
+
+  .projectTablet {
+    margin: 0 auto;
+  }
+
+  .projectContent {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .projectContent h3 {
+    margin-bottom: 8px;
+  }
+
+  .projectContent h4 {
+    margin-bottom: 12px;
+  }
+
+  .projectContent p {
+    margin-bottom: 18px;
+  }
+
+  .projectTech,
+  .projectTags {
+    margin-bottom: 18px;
+  }
+
+  .projectActions {
+    margin-top: 18px;
+  }
+
+  .projectNumber,
+  .projectBigNumber {
+    line-height: 0.85;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects {
+    padding-top: 70px;
+    padding-bottom: 64px;
+  }
+
+  .projectsContainer {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .projectsHeader {
+    margin-bottom: 36px;
+  }
+
+  .projectsList {
+    gap: 56px;
+  }
+
+  .projectItem {
+    gap: 22px;
+  }
+
+  .projectContent p {
+    margin-bottom: 16px;
+  }
+
+  .projectActions {
+    margin-top: 16px;
+  }
+}
+
+
+/* =========================================================
+   PROJECTS MOBILE — CONTENT ABOVE PREVIEW
+   Keep every project consistent: details first, tablet second.
+========================================================= */
+@media (max-width: 768px) {
+  .projectItem .projectContent,
+  .projectOne .projectContent,
+  .projectTwo .projectContent,
+  .projectThree .projectContent {
+    order: 1 !important;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .projectItem .projectVisual,
+  .projectOne .projectVisual,
+  .projectTwo .projectVisual,
+  .projectThree .projectVisual {
+    order: 2 !important;
+    width: 100%;
+    margin: 0;
+  }
+
+  .projectItem,
+  .projectOne,
+  .projectTwo,
+  .projectThree {
+    gap: 18px;
+    margin-bottom: 58px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectItem,
+  .projectOne,
+  .projectTwo,
+  .projectThree {
+    gap: 16px;
+    margin-bottom: 52px;
+  }
+}
+
+
+/* =========================================================
+   PROJECTS MOBILE — GITHUB BUTTON ABOVE PREVIEW
+   Details + tech + View Code stay together above the tablet.
+========================================================= */
+@media (max-width: 768px) {
+  .projectContent .projectCodeButton {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+
+  .projectItem .projectContent {
+    order: 1 !important;
+  }
+
+  .projectItem .projectVisual {
+    order: 2 !important;
+  }
+}
+
+
+/* =========================================================
+   PROJECTS MOBILE — SCROLL ACTIVE TABLET ACTION
+   On phones, View Project appears automatically while the
+   project preview passes through the viewport. No tap needed.
+========================================================= */
+@media (max-width: 768px) {
+  .projectTablet.projectTabletMobileActive {
+    border-color: rgba(196, 181, 253, 0.95);
+    box-shadow:
+      0 24px 54px rgba(0, 0, 0, 0.5),
+      0 0 34px rgba(124, 58, 237, 0.18);
+  }
+
+  .projectTablet.projectTabletMobileActive .projectVideo {
+    transform: scale(1.025);
+  }
+
+  .projectTablet.projectTabletMobileActive .projectVideoShade {
+    opacity: 1;
+  }
+
+  .projectTablet.projectTabletMobileActive .projectTabletAction {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .projectTablet.projectTabletMobileActive .tabletViewButton {
+    pointer-events: auto;
+  }
+}
+
+
+/* =========================================================
+   EXPERIENCE MOBILE — SCROLL ACTIVE LINKEDIN BUTTON
+========================================================= */
+@media (max-width: 768px) {
+  .experienceItem.experienceItemMobileActive .experienceLinkedin {
+    color: #ffffff;
+    border-color: rgba(196, 181, 253, 0.95);
+    background: linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.92),
+      rgba(91, 33, 182, 0.92)
+    );
+    box-shadow:
+      0 8px 24px rgba(124, 58, 237, 0.28),
+      0 0 20px rgba(167, 139, 250, 0.16);
+    transform: translateY(-2px);
+  }
+
+  .experienceItem.experienceItemMobileActive .experienceLinkedin span {
+    transform: translate(2px, -2px);
+  }
+}
+
+
+/* =========================================================
+   CONTACT MOBILE — SCROLL ACTIVE CARDS
+========================================================= */
+@media (max-width: 768px) {
+  .contactLink {
+    transition:
+      transform 0.35s ease,
+      border-color 0.35s ease,
+      background 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  .contactLinkIcon,
+  .contactLinkIcon svg,
+  .contactLinkArrow {
+    transition:
+      transform 0.55s ease,
+      color 0.35s ease,
+      border-color 0.35s ease,
+      background 0.35s ease;
+  }
+
+  .contactLink.contactLinkMobileActive {
+    transform: translateY(-3px);
+    border-color: rgba(139, 92, 246, 0.72);
+    background: linear-gradient(
+      105deg,
+      rgba(124, 58, 237, 0.12),
+      rgba(23, 18, 37, 0.92)
+    );
+    box-shadow:
+      0 14px 32px rgba(0, 0, 0, 0.28),
+      0 0 24px rgba(124, 58, 237, 0.12);
+  }
+
+  .contactLink.contactLinkMobileActive .contactLinkIcon {
+    color: #ffffff;
+    border-color: rgba(167, 139, 250, 0.88);
+    background: rgba(124, 58, 237, 0.18);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+  }
+
+  .contactLink.contactLinkMobileActive .contactLinkIcon svg {
+    transform: rotate(360deg) scale(1.08);
+  }
+
+  .contactLink.contactLinkMobileActive .contactLinkArrow {
+    color: #a78bfa;
+    transform: translate(2px, -2px);
+  }
+
+  .contactLink.contactLinkMobileActive .contactLinkInfo small {
+    color: #a78bfa;
+  }
+
+  .contactLink.contactLinkMobileActive .contactLinkInfo strong {
+    color: #ffffff;
+  }
+
+  .contactScene {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+  }
+
+  .contactScene canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactScene {
+    min-height: 290px;
+  }
+}

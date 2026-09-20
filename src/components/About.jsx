@@ -14,9 +14,9 @@ function About() {
       const cards = gsap.utils.toArray('.aboutCard')
       const statNumbers = gsap.utils.toArray('.aboutStatNumber')
 
-      /* =====================================================
+      /* =========================================
          CARD ENTRANCE
-      ===================================================== */
+      ========================================= */
 
       gsap.set(cards, {
         y: -140,
@@ -40,9 +40,9 @@ function About() {
         },
       })
 
-      /* =====================================================
+      /* =========================================
          STAT COUNTERS
-      ===================================================== */
+      ========================================= */
 
       ScrollTrigger.create({
         trigger: statsContainerRef.current,
@@ -88,6 +88,28 @@ function About() {
         },
       })
 
+      /* =========================================
+         MOBILE CARD SCROLL FOCUS
+      ========================================= */
+
+      const mobileQuery = window.matchMedia('(max-width: 768px)')
+
+      if (mobileQuery.matches) {
+        cards.forEach((card) => {
+          ScrollTrigger.create({
+            trigger: card,
+
+            start: 'top 64%',
+            end: 'bottom 36%',
+
+            toggleClass: {
+              targets: card,
+              className: 'aboutCardMobileActive',
+            },
+          })
+        })
+      }
+
       ScrollTrigger.refresh()
     }, sectionRef)
 
@@ -100,10 +122,7 @@ function About() {
       id="about"
       ref={sectionRef}
     >
-
-      {/* =====================================================
-          ANIMATED BACKGROUND STARS
-      ===================================================== */}
+      {/* Stars */}
 
       <div
         className="aboutStars"
@@ -123,10 +142,7 @@ function About() {
         <span className="aboutStar star12" />
       </div>
 
-
-      {/* =====================================================
-          BACKGROUND TEXT
-      ===================================================== */}
+      {/* Background Word */}
 
       <div
         className="aboutBackgroundText"
@@ -135,12 +151,11 @@ function About() {
         ABOUT
       </div>
 
-
       <div className="aboutContainer">
 
-        {/* =================================================
+        {/* =====================================
             LEFT CONTENT
-        ================================================= */}
+        ====================================== */}
 
         <div className="aboutContent">
 
@@ -149,14 +164,12 @@ function About() {
             <span className="aboutLabelLine" />
           </div>
 
-
           <h2 className="aboutTitle">
             Curious by nature.
             <br />
             Building through{' '}
             <span>experience.</span>
           </h2>
-
 
           <p className="aboutDescription">
             I’m Gagana Prasad, an undergraduate student at the
@@ -165,14 +178,12 @@ function About() {
             meaningful digital experiences.
           </p>
 
-
           <p className="aboutDescription">
             Beyond academics, I enjoy learning new technologies,
             building practical projects, collaborating with others,
             and taking part in activities that help me grow both
             personally and professionally.
           </p>
-
 
           <a
             href="#experience"
@@ -182,18 +193,13 @@ function About() {
             <span>→</span>
           </a>
 
-
-          {/* =================================================
-              STATS
-          ================================================= */}
+          {/* Stats */}
 
           <div
             className="aboutStats"
             ref={statsContainerRef}
           >
-
             <div className="aboutStat">
-
               <strong
                 className="aboutStatNumber"
                 data-value="10"
@@ -202,19 +208,11 @@ function About() {
                 0+
               </strong>
 
-              <span>
-                Projects
-              </span>
-
-              <small>
-                Built & Explored
-              </small>
-
+              <span>Projects</span>
+              <small>Built &amp; Explored</small>
             </div>
 
-
             <div className="aboutStat">
-
               <strong
                 className="aboutStatNumber"
                 data-value="3"
@@ -223,19 +221,11 @@ function About() {
                 0+
               </strong>
 
-              <span>
-                Years
-              </span>
-
-              <small>
-                Learning Continuously
-              </small>
-
+              <span>Years</span>
+              <small>Learning Continuously</small>
             </div>
 
-
             <div className="aboutStat">
-
               <strong
                 className="aboutStatNumber"
                 data-value="100"
@@ -244,129 +234,101 @@ function About() {
                 0%
               </strong>
 
-              <span>
-                Curiosity
-              </span>
-
-              <small>
-                Still Growing
-              </small>
-
+              <span>Curiosity</span>
+              <small>Still Growing</small>
             </div>
-
           </div>
-
         </div>
 
-
-        {/* =================================================
+        {/* =====================================
             RIGHT CARDS
-        ================================================= */}
+        ====================================== */}
 
         <div
           className="aboutCards"
           ref={cardsContainerRef}
         >
 
-          {/* CARD 01 */}
+          {/* Card 01 */}
 
           <article className="aboutCard">
-
             <div className="aboutCardNumber">
               01
             </div>
 
             <div className="aboutCardContent">
-
               <span className="aboutCardTag">
                 LEARN
               </span>
 
-              <h3>
-                Education
-              </h3>
+              <h3>Education</h3>
 
               <h4>
                 University of Sri Jayewardenepura
               </h4>
 
               <p>
-                Building knowledge, experience, and skills through
-                academic learning and continuous exploration.
+                Building knowledge, experience, and skills
+                through academic learning and continuous
+                exploration.
               </p>
-
             </div>
-
           </article>
 
-
-          {/* CARD 02 */}
+          {/* Card 02 */}
 
           <article className="aboutCard">
-
             <div className="aboutCardNumber">
               02
             </div>
 
             <div className="aboutCardContent">
-
               <span className="aboutCardTag">
                 CREATE
               </span>
 
-              <h3>
-                Explore & Build
-              </h3>
+              <h3>Explore &amp; Build</h3>
 
               <h4>
                 Projects • Technology • Learning
               </h4>
 
               <p>
-                Exploring modern technologies and transforming ideas
-                into practical, real-world projects.
+                Exploring modern technologies and
+                transforming ideas into practical,
+                real-world projects.
               </p>
-
             </div>
-
           </article>
 
-
-          {/* CARD 03 */}
+          {/* Card 03 */}
 
           <article className="aboutCard">
-
             <div className="aboutCardNumber">
               03
             </div>
 
             <div className="aboutCardContent">
-
               <span className="aboutCardTag">
                 GROW
               </span>
 
-              <h3>
-                Beyond Academics
-              </h3>
+              <h3>Beyond Academics</h3>
 
               <h4>
                 Collaboration • Leadership • Communities
               </h4>
 
               <p>
-                Taking part in teams, student communities, and
-                collaborative activities that create positive impact.
+                Taking part in teams, student communities,
+                and collaborative activities that create
+                positive impact.
               </p>
-
             </div>
-
           </article>
 
         </div>
-
       </div>
-
     </section>
   )
 }

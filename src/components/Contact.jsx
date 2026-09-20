@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import {
   FiMail,
   FiPhone,
@@ -43,6 +44,58 @@ const contactLinks = [
   },
 ]
 
+function ContactLink({ item }) {
+  const linkRef = useRef(null)
+  const [mobileActive, setMobileActive] = useState(false)
+  const Icon = item.icon
+
+  useEffect(() => {
+    const element = linkRef.current
+    if (!element) return undefined
+
+    const media = window.matchMedia('(max-width: 768px)')
+    if (!media.matches) return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setMobileActive(entry.isIntersecting && entry.intersectionRatio >= 0.72)
+      },
+      {
+        threshold: [0, 0.35, 0.72, 1],
+        rootMargin: '-22% 0px -22% 0px',
+      },
+    )
+
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <a
+      ref={linkRef}
+      href={item.href}
+      target={item.external ? '_blank' : undefined}
+      rel={item.external ? 'noopener noreferrer' : undefined}
+      className={`contactLink ${mobileActive ? 'contactLinkMobileActive' : ''}`}
+    >
+      <span className="contactLinkNumber">{item.id}</span>
+
+      <span className="contactLinkIcon">
+        <Icon />
+      </span>
+
+      <span className="contactLinkInfo">
+        <small>{item.label}</small>
+        <strong>{item.value}</strong>
+      </span>
+
+      <span className="contactLinkArrow">
+        <FiArrowUpRight />
+      </span>
+    </a>
+  )
+}
+
 function Contact() {
   return (
     <section className="contact" id="contact">
@@ -72,36 +125,9 @@ function Contact() {
           </p>
 
           <div className="contactLinks">
-            {contactLinks.map((item) => {
-              const Icon = item.icon
-
-              return (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  target={item.external ? '_blank' : undefined}
-                  rel={item.external ? 'noopener noreferrer' : undefined}
-                  className="contactLink"
-                >
-                  <span className="contactLinkNumber">
-                    {item.id}
-                  </span>
-
-                  <span className="contactLinkIcon">
-                    <Icon />
-                  </span>
-
-                  <span className="contactLinkInfo">
-                    <small>{item.label}</small>
-                    <strong>{item.value}</strong>
-                  </span>
-
-                  <span className="contactLinkArrow">
-                    <FiArrowUpRight />
-                  </span>
-                </a>
-              )
-            })}
+            {contactLinks.map((item) => (
+              <ContactLink key={item.id} item={item} />
+            ))}
           </div>
         </div>
 
@@ -116,13 +142,10 @@ function Contact() {
           <a href="#home" className="footerLogo">
             Gagana.
           </a>
-
           <span>Undergraduate Student</span>
         </div>
 
-        <p className="footerCopyright">
-          © 2026 Gagana Prasad
-        </p>
+        <p className="footerCopyright">© 2026 Gagana Prasad</p>
 
         <a href="#home" className="backToTop">
           Back to Top

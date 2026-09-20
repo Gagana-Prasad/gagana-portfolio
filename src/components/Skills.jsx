@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 
 /* =========================================================
@@ -178,6 +178,156 @@ function SkillCard({
   const cardRef = useRef(null)
   const liquidRef = useRef(null)
   const logoRef = useRef(null)
+
+  /* =======================================================
+     MOBILE SCROLL WATER FILL
+     Fill this card while it passes through the active
+     viewport zone. Desktop hover behavior stays unchanged.
+  ======================================================= */
+
+  useLayoutEffect(() => {
+    const card = cardRef.current
+    const liquid = liquidRef.current
+
+    if (!card || !liquid) return undefined
+
+    const mobileMedia = window.matchMedia('(max-width: 768px)')
+
+    if (!mobileMedia.matches) return undefined
+
+    let active = false
+
+    const setMobileActive = (nextActive) => {
+      if (active === nextActive) return
+
+      active = nextActive
+
+      gsap.killTweensOf(liquid)
+
+      gsap.to(liquid, {
+        height: nextActive
+          ? HOVER_WATER_LEVEL
+          : IDLE_WATER_LEVEL,
+        duration: nextActive ? 0.85 : 0.5,
+        ease: nextActive ? 'power2.inOut' : 'power2.out',
+        overwrite: true,
+      })
+
+      if (logoRef.current) {
+        gsap.killTweensOf(logoRef.current)
+
+        if (nextActive) {
+          gsap.fromTo(
+            logoRef.current,
+            {
+              x: 0,
+              y: 0,
+              rotateX: 0,
+              rotateY: 0,
+              rotateZ: 0,
+              scale: 1,
+            },
+            {
+              rotateY: 360,
+              rotateZ: 8,
+              scale: 1.08,
+              duration: 1.05,
+              ease: 'power2.inOut',
+              transformPerspective: 700,
+              transformOrigin: 'center center',
+              overwrite: true,
+              onComplete: () => {
+                if (!logoRef.current) return
+
+                gsap.to(logoRef.current, {
+                  rotateX: 0,
+                  rotateY: 360,
+                  rotateZ: 0,
+                  scale: 1,
+                  duration: 0.28,
+                  ease: 'power2.out',
+                  overwrite: true,
+                })
+              },
+            }
+          )
+        } else {
+          gsap.to(logoRef.current, {
+            x: 0,
+            y: 0,
+            rotateX: 0,
+            rotateY: 0,
+            rotateZ: 0,
+            scale: 1,
+            duration: 0.45,
+            ease: 'power3.out',
+            transformPerspective: 700,
+            transformOrigin: 'center center',
+            overwrite: true,
+          })
+        }
+      }
+
+      card.classList.toggle(
+        'skillCardMobileActive',
+        nextActive
+      )
+    }
+
+    const updateActiveCard = () => {
+      const rect = card.getBoundingClientRect()
+      const viewportHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight
+
+      /*
+        Active zone:
+        approximately the middle 40% of the phone screen.
+        As each card reaches this area its water fills.
+      */
+      const activeTop = viewportHeight * 0.30
+      const activeBottom = viewportHeight * 0.70
+
+      const cardCenter =
+        rect.top + rect.height / 2
+
+      setMobileActive(
+        cardCenter >= activeTop &&
+        cardCenter <= activeBottom
+      )
+    }
+
+    updateActiveCard()
+
+    window.addEventListener(
+      'scroll',
+      updateActiveCard,
+      { passive: true }
+    )
+
+    window.addEventListener(
+      'resize',
+      updateActiveCard
+    )
+
+    return () => {
+      window.removeEventListener(
+        'scroll',
+        updateActiveCard
+      )
+
+      window.removeEventListener(
+        'resize',
+        updateActiveCard
+      )
+
+      gsap.killTweensOf(liquid)
+
+      card.classList.remove(
+        'skillCardMobileActive'
+      )
+    }
+  }, [skill.name])
 
   /* =======================================================
      HOVER ENTER

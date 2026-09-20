@@ -1,4 +1,4 @@
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 import {
   TextureLoader,
   SRGBColorSpace,
@@ -9,48 +9,38 @@ import { useRef } from 'react'
 
 import portraitImage from './assets/gagana-portrait.png'
 
-
-/* =========================================================
-   PORTRAIT
-========================================================= */
-
 function Portrait() {
   const groupRef = useRef()
   const texture = useLoader(TextureLoader, portraitImage)
+  const { size } = useThree()
+  const isMobile = size.width <= 768
 
   texture.colorSpace = SRGBColorSpace
 
   useFrame((state) => {
-    if (!groupRef.current) return
+    if (!groupRef.current || isMobile) return
 
     const targetX = 2.05 + state.pointer.x * 0.12
     const targetY = -0.52 + state.pointer.y * 0.035
-
     const targetRotationY = state.pointer.x * 0.018
     const targetRotationX = -state.pointer.y * 0.008
 
     groupRef.current.position.x +=
       (targetX - groupRef.current.position.x) * 0.045
-
     groupRef.current.position.y +=
       (targetY - groupRef.current.position.y) * 0.045
-
     groupRef.current.rotation.y +=
       (targetRotationY - groupRef.current.rotation.y) * 0.035
-
     groupRef.current.rotation.x +=
       (targetRotationX - groupRef.current.rotation.x) * 0.035
   })
 
+  if (isMobile) return null
+
   return (
-    <group
-      ref={groupRef}
-      position={[2.05, -0.52, 0.7]}
-    >
-      {/* Very subtle purple depth behind portrait */}
+    <group ref={groupRef} position={[2.05, -0.52, 0.7]}>
       <mesh position={[0, -0.03, -0.08]}>
         <planeGeometry args={[2.18, 2.7]} />
-
         <meshBasicMaterial
           color="#6D28D9"
           transparent
@@ -62,7 +52,6 @@ function Portrait() {
 
       <mesh renderOrder={10}>
         <planeGeometry args={[2.15, 2.67]} />
-
         <meshBasicMaterial
           map={texture}
           transparent
@@ -74,41 +63,27 @@ function Portrait() {
   )
 }
 
-
-/* =========================================================
-   LARGE BOTTOM LEFT GLOBE
-========================================================= */
-
 function BottomPlanet() {
   const ref = useRef()
+  const { size } = useThree()
+  const isMobile = size.width <= 768
 
   useFrame((_, delta) => {
     if (!ref.current) return
-
     ref.current.rotation.y += delta * 0.035
   })
 
+  if (isMobile) return null
+
   return (
-    <group
-      ref={ref}
-      position={[-4.15, -4.55, -4.8]}
-      scale={2.65}
-    >
-      {/* Dark body */}
+    <group ref={ref} position={[-4.15, -4.55, -4.8]} scale={2.65}>
       <mesh>
         <sphereGeometry args={[1.5, 64, 64]} />
-
-        <meshStandardMaterial
-          color="#030108"
-          roughness={1}
-          metalness={0}
-        />
+        <meshStandardMaterial color="#030108" roughness={1} metalness={0} />
       </mesh>
 
-      {/* Main brighter grid */}
       <mesh scale={1.008}>
         <sphereGeometry args={[1.5, 42, 42]} />
-
         <meshBasicMaterial
           color="#7C3AED"
           wireframe
@@ -118,10 +93,8 @@ function BottomPlanet() {
         />
       </mesh>
 
-      {/* Fine grid */}
       <mesh scale={1.014}>
         <sphereGeometry args={[1.5, 28, 28]} />
-
         <meshBasicMaterial
           color="#A78BFA"
           wireframe
@@ -131,10 +104,8 @@ function BottomPlanet() {
         />
       </mesh>
 
-      {/* Soft outer purple surface */}
       <mesh scale={1.021}>
         <sphereGeometry args={[1.5, 32, 32]} />
-
         <meshBasicMaterial
           color="#6D28D9"
           transparent
@@ -147,47 +118,36 @@ function BottomPlanet() {
   )
 }
 
-
-/* =========================================================
-   TOP LEFT WIREFRAME PLANET
-========================================================= */
-
 function TopLeftPlanet() {
   const ref = useRef()
+  const { size } = useThree()
+  const isMobile = size.width <= 768
+
+  const baseX = isMobile ? -1.35 : -4.25
+  const baseY = isMobile ? 1.45 : 3.22
 
   useFrame((state, delta) => {
     if (!ref.current) return
 
     const time = state.clock.getElapsedTime()
-
     ref.current.rotation.y += delta * 0.055
-
-    ref.current.position.x =
-      -4.25 + Math.sin(time * 0.22) * 0.05
-
-    ref.current.position.y =
-      3.22 + Math.cos(time * 0.2) * 0.04
+    ref.current.position.x = baseX + Math.sin(time * 0.22) * 0.04
+    ref.current.position.y = baseY + Math.cos(time * 0.2) * 0.03
   })
 
   return (
     <group
       ref={ref}
-      position={[-4.25, 3.22, -4.8]}
-      scale={0.64}
+      position={[baseX, baseY, -4.8]}
+      scale={isMobile ? 0.27 : 0.64}
     >
       <mesh>
         <sphereGeometry args={[1.2, 48, 48]} />
-
-        <meshStandardMaterial
-          color="#07030D"
-          roughness={1}
-        />
+        <meshStandardMaterial color="#07030D" roughness={1} />
       </mesh>
 
-      {/* Brighter wireframe */}
       <mesh scale={1.015}>
         <sphereGeometry args={[1.2, 30, 30]} />
-
         <meshBasicMaterial
           color="#8B5CF6"
           wireframe
@@ -197,10 +157,8 @@ function TopLeftPlanet() {
         />
       </mesh>
 
-      {/* Small edge glow */}
       <mesh scale={1.035}>
         <sphereGeometry args={[1.2, 28, 28]} />
-
         <meshBasicMaterial
           color="#7C3AED"
           transparent
@@ -213,46 +171,36 @@ function TopLeftPlanet() {
   )
 }
 
-
-/* =========================================================
-   MIDDLE SMALL PLANET
-========================================================= */
-
 function MiddlePlanet() {
   const ref = useRef()
+  const { size } = useThree()
+  const isMobile = size.width <= 768
+
+  const baseX = isMobile ? -0.45 : -0.25
+  const baseY = isMobile ? 1.05 : 2.05
 
   useFrame((state, delta) => {
     if (!ref.current) return
 
     const time = state.clock.getElapsedTime()
-
     ref.current.rotation.y += delta * 0.09
-
-    ref.current.position.x =
-      -0.25 + Math.sin(time * 0.28) * 0.08
-
-    ref.current.position.y =
-      2.05 + Math.cos(time * 0.25) * 0.045
+    ref.current.position.x = baseX + Math.sin(time * 0.28) * 0.05
+    ref.current.position.y = baseY + Math.cos(time * 0.25) * 0.03
   })
 
   return (
     <group
       ref={ref}
-      position={[-0.25, 2.05, -3.4]}
-      scale={0.145}
+      position={[baseX, baseY, -3.4]}
+      scale={isMobile ? 0.065 : 0.145}
     >
       <mesh>
         <sphereGeometry args={[1, 40, 40]} />
-
-        <meshStandardMaterial
-          color="#24113D"
-          roughness={0.8}
-        />
+        <meshStandardMaterial color="#24113D" roughness={0.8} />
       </mesh>
 
       <mesh scale={1.035}>
         <sphereGeometry args={[1, 26, 26]} />
-
         <meshBasicMaterial
           color="#8B5CF6"
           transparent
@@ -261,10 +209,8 @@ function MiddlePlanet() {
         />
       </mesh>
 
-      {/* Tiny wireframe detail */}
       <mesh scale={1.055}>
         <sphereGeometry args={[1, 18, 18]} />
-
         <meshBasicMaterial
           color="#A78BFA"
           wireframe
@@ -277,46 +223,36 @@ function MiddlePlanet() {
   )
 }
 
-
-/* =========================================================
-   SMALL LEFT PLANET
-========================================================= */
-
 function SmallLeftPlanet() {
   const ref = useRef()
+  const { size } = useThree()
+  const isMobile = size.width <= 768
+
+  const baseX = isMobile ? -1.05 : -3.55
+  const baseY = isMobile ? 0.65 : 1.45
 
   useFrame((state, delta) => {
     if (!ref.current) return
 
     const time = state.clock.getElapsedTime()
-
     ref.current.rotation.y += delta * 0.08
-
-    ref.current.position.x =
-      -3.55 + Math.sin(time * 0.32) * 0.06
-
-    ref.current.position.y =
-      1.45 + Math.cos(time * 0.3) * 0.04
+    ref.current.position.x = baseX + Math.sin(time * 0.32) * 0.03
+    ref.current.position.y = baseY + Math.cos(time * 0.3) * 0.02
   })
 
   return (
     <group
       ref={ref}
-      position={[-3.55, 1.45, -3.6]}
-      scale={0.09}
+      position={[baseX, baseY, -3.6]}
+      scale={isMobile ? 0.045 : 0.09}
     >
       <mesh>
         <sphereGeometry args={[1, 36, 36]} />
-
-        <meshStandardMaterial
-          color="#24103E"
-          roughness={0.8}
-        />
+        <meshStandardMaterial color="#24103E" roughness={0.8} />
       </mesh>
 
       <mesh scale={1.04}>
         <sphereGeometry args={[1, 24, 24]} />
-
         <meshBasicMaterial
           color="#A78BFA"
           transparent
@@ -328,16 +264,16 @@ function SmallLeftPlanet() {
   )
 }
 
-
-/* =========================================================
-   BACKGROUND PURPLE DEPTH
-========================================================= */
-
 function BackgroundGlow() {
-  return (
-    <mesh position={[0.7, 0.15, -7]}>
-      <circleGeometry args={[3.2, 64]} />
+  const { size } = useThree()
+  const isMobile = size.width <= 768
 
+  return (
+    <mesh
+      position={isMobile ? [0.8, 0.55, -7] : [0.7, 0.15, -7]}
+      scale={isMobile ? 0.65 : 1}
+    >
+      <circleGeometry args={[3.2, 64]} />
       <meshBasicMaterial
         color="#4C1D95"
         transparent
@@ -349,18 +285,10 @@ function BackgroundGlow() {
   )
 }
 
-
-/* =========================================================
-   FINAL SCENE
-========================================================= */
-
 function Scene() {
   return (
     <Canvas
-      camera={{
-        position: [0, 0, 5],
-        fov: 45,
-      }}
+      camera={{ position: [0, 0, 5], fov: 45 }}
       gl={{
         alpha: true,
         antialias: true,
@@ -368,7 +296,6 @@ function Scene() {
       }}
       dpr={[1, 1.5]}
     >
-      {/* Slightly brighter global lighting */}
       <ambientLight intensity={0.32} />
 
       <pointLight
@@ -386,16 +313,10 @@ function Scene() {
       />
 
       <BackgroundGlow />
-
-      {/* Space objects */}
       <TopLeftPlanet />
       <MiddlePlanet />
       <SmallLeftPlanet />
-
-      {/* Large globe */}
       <BottomPlanet />
-
-      {/* Portrait */}
       <Portrait />
     </Canvas>
   )
